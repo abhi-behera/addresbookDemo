@@ -80,8 +80,8 @@ class CardTile extends StatelessWidget {
     required this.address,
     required this.tileIndex,
   });
-  final Map<String, String> address;
-  // final Address address;
+  // final Map<String, String> address;
+  final Address address;
   final int tileIndex;
   @override
   Widget build(BuildContext context) {
@@ -101,8 +101,7 @@ class CardTile extends StatelessWidget {
                   borderRadius: BorderRadius.circular(6),
                   color: const Color.fromRGBO(104, 134, 162, 1)),
               child: Text(
-                // address.addressType!,
-                address['type']!,
+                address.addressType!,
                 style: const TextStyle(color: Colors.white),
               ),
             ),
@@ -143,7 +142,7 @@ class CardTile extends StatelessWidget {
         subtitle: Padding(
           padding: const EdgeInsets.only(bottom: 12, top: 6),
           child: Text(
-            '${address['address']} , ${address['state']}, ${address['city']}',
+            '${address.address1} , ${address.address2}, ${address.city}',
             style: const TextStyle(color: Colors.black, fontSize: 14),
           ),
         ),
