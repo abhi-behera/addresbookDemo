@@ -3,9 +3,13 @@ import 'package:dumyapp1/constValues.dart';
 import 'package:flutter/foundation.dart';
 
 class AddressProvider with ChangeNotifier {
-  final List<Address> _addresses = [];
-  Address addressObj = Address();
-  List<Address> get addresses => List.unmodifiable(_addresses);
+  final List<Map<String, String>> _addresses = [];
+
+  List<Map<String, String>> get addresses => List.unmodifiable(_addresses);
+
+  // final List<Address> _addresses = [];
+  // Address addressObj = Address();
+  // List<Address> get addresses => List.unmodifiable(_addresses);
 
   // List<Address> get addres => addres;
 
@@ -26,20 +30,20 @@ class AddressProvider with ChangeNotifier {
     String city,
     String zip,
   ) {
-    addressObj.address1 = address1;
-    addressObj.address2 = address2;
-    addressObj.addressType = type;
-    addressObj.country = country;
-    addressObj.state = state;
-    addressObj.city = city;
-    addressObj.zip = zip;
+    // addressObj.address1 = address1;
+    // addressObj.address2 = address2;
+    // addressObj.addressType = type;
+    // addressObj.country = country;
+    // addressObj.state = state;
+    // addressObj.city = city;
+    // addressObj.zip = zip;
 
-    // _addresses.add({
-    //   'address': address1,
-    //   'type': type,
-    //   'country': country,
-    //   'state': state,
-    // });
+    _addresses.add({
+      'address': address1,
+      'type': type,
+      'country': country,
+      'state': state,
+    });
 
     notifyListeners();
   }
