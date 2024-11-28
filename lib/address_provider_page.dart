@@ -1,17 +1,10 @@
-import 'package:dumyapp1/addressModel.dart';
-import 'package:dumyapp1/constValues.dart';
+import 'package:dumyapp1/address_model.dart';
 import 'package:flutter/foundation.dart';
 
 class AddressProvider with ChangeNotifier {
-  //List of map used code...
-  // final List<Map<String, String>> _addresses = [];
-
-  // List<Map<String, String>> get addresses => List.unmodifiable(_addresses);
-
-  // List of address model code used...
-
   final List<Address> _addresses = [];
 
+  // List<Address> get addresses => List.from(_addresses);
   List<Address> get addresses => List.unmodifiable(_addresses);
 
   int? _preferredIndex;

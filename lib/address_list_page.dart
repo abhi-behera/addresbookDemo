@@ -1,17 +1,16 @@
-import 'package:dumyapp1/addressModel.dart';
-import 'package:dumyapp1/addressProviderpage.dart';
-import 'package:dumyapp1/constValues.dart';
+import 'package:dumyapp1/address_model.dart';
+import 'package:dumyapp1/address_provider_page.dart';
+import 'package:dumyapp1/const_values.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:dumyapp1/addressFormPage.dart';
+import 'package:dumyapp1/address_form_page.dart';
 import 'package:provider/provider.dart';
 
 class AddressListPage extends StatelessWidget {
-  AddressListPage({super.key});
+  const AddressListPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Screenwidth = MediaQuery.of(context).size.width * 0.025;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Addresses List'),
@@ -60,12 +59,16 @@ void _handleMenuAction(BuildContext context, String value, int index) {
       break;
     case 'Edit':
       // Handle "Edit" action
-      print('Edit selected for item $index');
+      if (kDebugMode) {
+        print('Edit selected for item $index');
+      }
 
       break;
     case 'Help':
       // Handle "Help" action
-      print('Help selected for item $index');
+      if (kDebugMode) {
+        print('Help selected for item $index');
+      }
       break;
   }
 }

@@ -1,8 +1,5 @@
-import 'dart:math';
-
-import 'package:dumyapp1/addressListPage.dart';
-import 'package:dumyapp1/addressProviderpage.dart';
-import 'package:dumyapp1/constValues.dart';
+import 'package:dumyapp1/address_provider_page.dart';
+import 'package:dumyapp1/const_values.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,17 +7,17 @@ import 'package:provider/provider.dart';
 class AddressFormPage extends StatefulWidget {
   final GlobalKey<FormState> _formKey1 = GlobalKey();
 
+  AddressFormPage({super.key});
+
   @override
-  _AddressFormPageState createState() => _AddressFormPageState();
+  AddressFormPageState createState() => AddressFormPageState();
 }
 
-class _AddressFormPageState extends State<AddressFormPage> {
-  var Screenwidth;
-  final TextEditingController addrrss1Controller = TextEditingController();
-  final TextEditingController addrrss2Controller = TextEditingController();
+class AddressFormPageState extends State<AddressFormPage> {
+  final TextEditingController _addrrss1Controller = TextEditingController();
+  final TextEditingController _addrrss2Controller = TextEditingController();
   final TextEditingController _cityController = TextEditingController();
   final TextEditingController _zipController = TextEditingController();
-  // final List<Map<String, String>> _addresses = [];
   String _selectedAddressType = 'Home';
   String _selectedCountry = 'India';
   String _selectedState = 'Delhi';
@@ -35,8 +32,8 @@ class _AddressFormPageState extends State<AddressFormPage> {
 
   @override
   void dispose() {
-    addrrss1Controller.dispose();
-    addrrss2Controller.dispose();
+    _addrrss1Controller.dispose();
+    _addrrss2Controller.dispose();
     _cityController.dispose();
     _zipController.dispose();
     super.dispose();
@@ -56,10 +53,10 @@ class _AddressFormPageState extends State<AddressFormPage> {
     void saveAddress() {
       if (widget._formKey1.currentState!.validate()) {
         widget._formKey1.currentState!.save();
-        if (addrrss1Controller.text.isNotEmpty) {
+        if (_addrrss1Controller.text.isNotEmpty) {
           addressProvider.addAddress(
-              addrrss1Controller.text,
-              addrrss2Controller.text,
+              _addrrss1Controller.text,
+              _addrrss2Controller.text,
               _selectedAddressType,
               _selectedCountry,
               _selectedState,
@@ -73,7 +70,7 @@ class _AddressFormPageState extends State<AddressFormPage> {
       }
     }
 
-    Screenwidth = MediaQuery.of(context).size.width * 0.85;
+    double screenWidth = MediaQuery.of(context).size.width * 0.85;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add Address'),
@@ -91,7 +88,7 @@ class _AddressFormPageState extends State<AddressFormPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    width: Screenwidth,
+                    width: screenWidth,
                     padding: const EdgeInsets.only(bottom: 20),
                     // dropdown
                     child: DropdownButtonFormField<String>(
@@ -114,14 +111,14 @@ class _AddressFormPageState extends State<AddressFormPage> {
                     ),
                   ),
                   Container(
-                    width: Screenwidth,
+                    width: screenWidth,
                     padding: const EdgeInsets.only(bottom: 20),
                     child: TextFormField(
-                      controller: addrrss1Controller,
+                      controller: _addrrss1Controller,
                       decoration: InputDecoration(
                         hintText: 'Enter the Address Line 1',
                         suffixIcon: IconButton(
-                          onPressed: addrrss1Controller.clear,
+                          onPressed: _addrrss1Controller.clear,
                           icon: const Icon(Icons.clear),
                         ),
                         labelText: 'Address Line 1',
@@ -136,14 +133,14 @@ class _AddressFormPageState extends State<AddressFormPage> {
                     ),
                   ),
                   Container(
-                    width: Screenwidth,
+                    width: screenWidth,
                     padding: const EdgeInsets.only(bottom: 20),
                     child: TextFormField(
-                      controller: addrrss2Controller,
+                      controller: _addrrss2Controller,
                       decoration: InputDecoration(
                         hintText: 'Enter the Address Line 2',
                         suffixIcon: IconButton(
-                          onPressed: addrrss2Controller.clear,
+                          onPressed: _addrrss2Controller.clear,
                           icon: const Icon(Icons.clear),
                         ),
                         labelText: 'Address Line 2',
@@ -158,9 +155,8 @@ class _AddressFormPageState extends State<AddressFormPage> {
                     ),
                   ),
                   // dropdown
-
                   Container(
-                    width: Screenwidth,
+                    width: screenWidth,
                     padding: const EdgeInsets.only(bottom: 20),
                     child: DropdownButtonFormField<String>(
                       value: _selectedCountry,
@@ -183,9 +179,8 @@ class _AddressFormPageState extends State<AddressFormPage> {
                     ),
                   ),
                   // dropdown
-
                   Container(
-                    width: Screenwidth,
+                    width: screenWidth,
                     padding: const EdgeInsets.only(bottom: 20),
                     child: DropdownButtonFormField<String>(
                       value: _selectedState,
@@ -207,7 +202,7 @@ class _AddressFormPageState extends State<AddressFormPage> {
                     ),
                   ),
                   Container(
-                    width: Screenwidth,
+                    width: screenWidth,
                     padding: const EdgeInsets.only(bottom: 20),
                     child: TextFormField(
                       controller: _cityController,
@@ -232,7 +227,7 @@ class _AddressFormPageState extends State<AddressFormPage> {
                     ),
                   ),
                   Container(
-                    width: Screenwidth,
+                    width: screenWidth,
                     padding: const EdgeInsets.only(bottom: 20),
                     child: TextFormField(
                       maxLength: 6,

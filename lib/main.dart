@@ -1,7 +1,5 @@
-import 'package:dumyapp1/addressListPage.dart';
-import 'package:dumyapp1/addressProviderpage.dart';
-import 'package:dumyapp1/constValues.dart';
-import 'package:dumyapp1/homepage.dart';
+import 'package:dumyapp1/address_provider_page.dart';
+import 'package:dumyapp1/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

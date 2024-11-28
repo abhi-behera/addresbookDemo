@@ -1,13 +1,15 @@
-import 'package:dumyapp1/addressListPage.dart';
-import 'package:dumyapp1/constValues.dart';
+import 'package:dumyapp1/address_list_page.dart';
+import 'package:dumyapp1/const_values.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  HomeScreenState createState() => HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 1;
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -23,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Screenwidth = MediaQuery.of(context).size.width * 0.6;
+    double screenWidth = MediaQuery.of(context).size.width * 0.6;
 
     return Scaffold(
       key: _scaffoldKey,
@@ -33,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 10,
       ),
       drawer: Drawer(
-        width: Screenwidth,
+        width: screenWidth,
         backgroundColor: appBarColor,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
