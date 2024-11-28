@@ -14,37 +14,11 @@ class AddressProvider with ChangeNotifier {
 
   List<Address> get addresses => List.unmodifiable(_addresses);
 
-  // final List<Address> _addresses = [];
-  // Address addressObj = Address();
-  // List<Address> get addresses => List.unmodifiable(_addresses);
+  int? _preferredIndex;
+  int? get preferredIndex => _preferredIndex;
 
-  // List<Address> get addres => addres;
-
-  // List<Address> addres = [];
-
-  // List<Address> get getAddress {
-  //   return addres;
-  // }
-
-  // Future adddAddress(Address adr) async {}
-
-  void addAddress(
-    String address1,
-    String address2,
-    String type,
-    String country,
-    String state,
-    String city,
-    String zip,
-  ) {
-    // addressObj.address1 = address1;
-    // addressObj.address2 = address2;
-    // addressObj.addressType = type;
-    // addressObj.country = country;
-    // addressObj.state = state;
-    // addressObj.city = city;
-    // addressObj.zip = zip;
-
+  void addAddress(String address1, String address2, String type, String country,
+      String state, String city, String zip) {
     _addresses.add(Address(
       address1: address1,
       address2: address2,
@@ -54,14 +28,11 @@ class AddressProvider with ChangeNotifier {
       country: country,
       state: state,
     ));
+    notifyListeners();
+  }
 
-    // _addresses.add({
-    //   'address': address1,
-    //   'type': type,
-    //   'country': country,
-    //   'state': state,
-    // });
-
+  void setPreferredIndex(int index) {
+    _preferredIndex = index;
     notifyListeners();
   }
 }

@@ -51,25 +51,21 @@ class AddressListPage extends StatelessWidget {
 }
 
 void _handleMenuAction(BuildContext context, String value, int index) {
+  final addressProvider = Provider.of<AddressProvider>(context, listen: false);
+
   switch (value) {
     case 'Preference':
       // Handle "Preference" action
-      preference = true;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Edit selected for item $index')),
-      );
+      addressProvider.setPreferredIndex(index);
       break;
     case 'Edit':
       // Handle "Edit" action
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Edit selected for item $index')),
-      );
+      print('Edit selected for item $index');
+
       break;
     case 'Help':
       // Handle "Help" action
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Help selected for item $index')),
-      );
+      print('Help selected for item $index');
       break;
   }
 }
@@ -80,11 +76,13 @@ class CardTile extends StatelessWidget {
     required this.address,
     required this.tileIndex,
   });
-  // final Map<String, String> address;
   final Address address;
   final int tileIndex;
   @override
   Widget build(BuildContext context) {
+    final addressProvider = Provider.of<AddressProvider>(context);
+    final isPreferred = addressProvider.preferredIndex == tileIndex;
+
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
@@ -106,7 +104,7 @@ class CardTile extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            (preference == true)
+            (isPreferred)
                 ? SizedBox(
                     key: ValueKey(tileIndex),
                     height: 20,
@@ -122,20 +120,31 @@ class CardTile extends StatelessWidget {
                   onSelected: (value) {
                     _handleMenuAction(context, value, tileIndex);
                   },
-                  itemBuilder: (context) => [
-                    const PopupMenuItem(
-                      value: 'Preference',
-                      child: Text('Preference'),
-                    ),
-                    const PopupMenuItem(
-                      value: 'Edit',
-                      child: Text('Edit'),
-                    ),
-                    const PopupMenuItem(
-                      value: 'Help',
-                      child: Text('Help'),
-                    ),
-                  ],
+                  itemBuilder: (context) => (isPreferred)
+                      ? [
+                          const PopupMenuItem(
+                            value: 'Edit',
+                            child: Text('Edit'),
+                          ),
+                          const PopupMenuItem(
+                            value: 'Help',
+                            child: Text('Help'),
+                          ),
+                        ]
+                      : [
+                          const PopupMenuItem(
+                            value: 'Preference',
+                            child: Text('Preference'),
+                          ),
+                          const PopupMenuItem(
+                            value: 'Edit',
+                            child: Text('Edit'),
+                          ),
+                          const PopupMenuItem(
+                            value: 'Help',
+                            child: Text('Help'),
+                          ),
+                        ],
                 )),
           ],
         ),
