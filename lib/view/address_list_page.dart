@@ -1,9 +1,9 @@
-import 'package:dumyapp1/address_model.dart';
-import 'package:dumyapp1/address_provider_page.dart';
+import 'package:dumyapp1/model/address_model.dart';
+import 'package:dumyapp1/provider/address_provider_page.dart';
 import 'package:dumyapp1/const_values.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:dumyapp1/address_form_page.dart';
+import 'package:dumyapp1/view/address_form_page.dart';
 import 'package:provider/provider.dart';
 
 class AddressListPage extends StatelessWidget {

@@ -1,4 +1,4 @@
-import 'package:dumyapp1/address_list_page.dart';
+import 'package:dumyapp1/view/address_list_page.dart';
 import 'package:dumyapp1/const_values.dart';
 import 'package:flutter/material.dart';
 
