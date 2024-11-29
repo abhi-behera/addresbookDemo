@@ -12,12 +12,7 @@ class AddressListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Addresses List'),
-        centerTitle: true,
-        backgroundColor: appBarColor,
-        elevation: 10,
-      ),
+      appBar: customAppBar("Addresses List"),
       body: Consumer<AddressProvider>(
         builder: (context, addressProvider, child) {
           final addresses = addressProvider.addresses;
@@ -54,18 +49,18 @@ void _handleMenuAction(BuildContext context, String value, int index) {
 
   switch (value) {
     case 'Preference':
-      // Handle "Preference" action
+      // For Handling "Preference" part
       addressProvider.setPreferredIndex(index);
       break;
     case 'Edit':
-      // Handle "Edit" action
+      // For Handling "Edit" part
       if (kDebugMode) {
         print('Edit selected for item $index');
       }
 
       break;
     case 'Help':
-      // Handle "Help" action
+      // For Handling "Help" part
       if (kDebugMode) {
         print('Help selected for item $index');
       }

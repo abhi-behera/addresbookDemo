@@ -1,5 +1,5 @@
 import 'package:dumyapp1/provider/address_provider_page.dart';
-import 'package:dumyapp1/view/home_page.dart';
+import 'package:dumyapp1/view/navbar_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: HomeScreen(),
+      home: NavbarScreen(),
     );
   }
 }

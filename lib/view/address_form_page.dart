@@ -72,12 +72,7 @@ class AddressFormPageState extends State<AddressFormPage> {
 
     double screenWidth = MediaQuery.of(context).size.width * 0.85;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Add Address'),
-        centerTitle: true,
-        backgroundColor: appBarColor,
-        elevation: 10,
-      ),
+      appBar: customAppBar('Add Address'),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
