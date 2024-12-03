@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:dumyapp1/const_values.dart';
 import 'package:dumyapp1/view/Home/single_forum.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,6 +14,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  static Map<String, dynamic> jsonData = {};
+
+  @override
+  void initState() {
+    _loadFormData();
+    super.initState();
+  }
+
+  Future<void> _loadFormData() async {
+    if (kDebugMode) {
+      print("load data called");
+    }
+    final String jsonString = await rootBundle
+        .loadString('json_data_folder/single_entry_adhoc_form.json');
+    if (kDebugMode) {
+      print("jsonString : $jsonString");
+    }
+    jsonData = json.decode(jsonString);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +55,8 @@ class _HomePageState extends State<HomePage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const SingleForumPage()));
+                            builder: (context) =>
+                                SingleForumPage(jsonData: jsonData)));
                   },
                 );
               })),

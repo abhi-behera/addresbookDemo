@@ -1,4 +1,5 @@
 import 'package:dumyapp1/provider/address_provider_page.dart';
+import 'package:dumyapp1/provider/formfield_provider.dart';
 import 'package:dumyapp1/view/navbar_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -8,6 +9,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AddressProvider()),
+        // ChangeNotifierProvider(create: (_) => FormProvider()),
       ],
       child: MyApp(),
     ),
