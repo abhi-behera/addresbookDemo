@@ -1,32 +1,46 @@
+import 'dart:convert';
 import 'package:dumyapp1/const_values.dart';
 import 'package:dumyapp1/model/formfield_model.dart';
-import 'package:dumyapp1/provider/formfield_provider.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'dart:convert';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
 class SingleForumPage extends StatefulWidget {
-  final Map<String, dynamic> jsonData;
-
-  SingleForumPage({required this.jsonData});
+  const SingleForumPage({super.key});
 
   @override
   State<SingleForumPage> createState() => _SingleForumPageState();
 }
 
 class _SingleForumPageState extends State<SingleForumPage> {
+  FormData frm = FormData();
+
   final DateFormat dateFormat = DateFormat("yyyy-MM-dd'T'HH:mm:ss");
   DateTime? pickedDate;
+  Future<FormData?> loadFormData() async {
+    try {
+      final String jsonString = await rootBundle
+          .loadString('json_data_folder/single_entry_adhoc_form.json');
+      final Map<String, dynamic> jsonData = jsonDecode(jsonString);
+      frm = FormData.fromJson(jsonData);
+      return frm;
+    } catch (e) {
+      if (kDebugMode) {
+        print("error caught : $e");
+      }
+    }
+    return null;
+  }
 
-  Widget _buildField(Map<String, dynamic> fieldData, BuildContext context) {
-    switch (fieldData['FieldType']) {
+  Widget _buildField(Field fieldData, BuildContext context) {
+    switch (fieldData.fieldType) {
       case 'InputBox':
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: TextField(
             decoration: InputDecoration(
-              labelText: fieldData['FieldName'],
-              hintText: fieldData['FieldDescription'],
+              labelText: fieldData.fieldName,
               border: const OutlineInputBorder(),
             ),
           ),
@@ -38,17 +52,17 @@ class _SingleForumPageState extends State<SingleForumPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                fieldData['FieldName'],
+                fieldData.fieldName.toString(),
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
-              ...fieldData['FieldOptions'].map<Widget>((option) {
+              ...fieldData.fieldOptions!.map<Widget>((option) {
                 return RadioListTile(
-                  title: Text(option['Text']),
-                  value: option['Value'],
-                  groupValue: fieldData['FieldValue'],
+                  title: Text(option.text),
+                  value: option.value,
+                  groupValue: fieldData.fieldValue,
                   onChanged: (value) {
                     setState(() {
-                      fieldData['FieldValue'] = value;
+                      fieldData.fieldValue = value;
                     });
                   },
                 );
@@ -75,7 +89,7 @@ class _SingleForumPageState extends State<SingleForumPage> {
             },
             child: InputDecorator(
               decoration: InputDecoration(
-                labelText: fieldData['FieldName'],
+                labelText: fieldData.fieldName,
                 border: const OutlineInputBorder(),
               ),
               child: FittedBox(
@@ -95,14 +109,14 @@ class _SingleForumPageState extends State<SingleForumPage> {
           padding: const EdgeInsets.all(8.0),
           child: DropdownButtonFormField(
             decoration: InputDecoration(
-              labelText: fieldData['FieldName'],
+              labelText: fieldData.fieldName,
               border: const OutlineInputBorder(),
             ),
-            items: (fieldData['FieldOptions'] as List<dynamic>)
+            items: (fieldData.fieldOptions as List<dynamic>)
                 .map<DropdownMenuItem<Object>>(
                     (option) => DropdownMenuItem<Object>(
-                          value: option['Value'],
-                          child: Text(option['Text']),
+                          value: option.value,
+                          child: Text(option.text),
                         ))
                 .toList(),
             onChanged: (value) {},
@@ -115,19 +129,35 @@ class _SingleForumPageState extends State<SingleForumPage> {
 
   @override
   Widget build(BuildContext context) {
-    List<dynamic> fields = widget.jsonData['Fields'];
     return Scaffold(
-      appBar: customAppBar(widget.jsonData['FormName']),
-      body: ListView(
-        padding: const EdgeInsets.all(8.0),
-        children: fields.map((field) => _buildField(field, context)).toList(),
-      ),
+      appBar: customAppBar("SINGLE ENTRY"),
+      body: FutureBuilder(
+          future: loadFormData(),
+          builder: (context, data) {
+            if (data.hasError) {
+              return Center(child: Text(data.error.toString()));
+            }
+            if (data.hasData) {
+              return ListView(
+                padding: const EdgeInsets.all(8.0),
+                children: frm.fields!
+                    .map((field) => _buildField(field, context))
+                    .toList(),
+              );
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          }),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ElevatedButton(
-          style: ElevatedButton.styleFrom(backgroundColor: appBarColor),
+          style: ElevatedButton.styleFrom(
+              backgroundColor: appBarColor,
+              textStyle: TextStyle(color: textColor)),
           onPressed: () {},
-          child: Text(widget.jsonData['ButtonType']),
+          child: const Text("SUBMIT"),
         ),
       ),
     );

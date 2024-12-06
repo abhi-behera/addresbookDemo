@@ -3,8 +3,6 @@ import 'package:flutter/foundation.dart';
 
 class AddressProvider with ChangeNotifier {
   final List<Address> _addresses = [];
-
-  // List<Address> get addresses => List.from(_addresses);
   List<Address> get addresses => List.unmodifiable(_addresses);
 
   int? _preferredIndex;
