@@ -1,10 +1,8 @@
-import 'package:dumyapp1/model/address_model.dart';
+import 'package:dumyapp1/model/addressbook/address_model.dart';
 import 'package:flutter/foundation.dart';
 
 class AddressProvider with ChangeNotifier {
   final List<Address> _addresses = [];
-
-  // List<Address> get addresses => List.from(_addresses);
   List<Address> get addresses => List.unmodifiable(_addresses);
 
   int? _preferredIndex;
