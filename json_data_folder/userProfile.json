@@ -222,12 +222,44 @@
   "GenderList": [
     {
       "Gender": "Male",
-      " ": "Male",
+      "GenderCode": "Male",
       "LanguageCode": "en"
     },
     {
       "Gender": "Female",
       "GenderCode": "Female",
+      "LanguageCode": "en"
+    }
+  ],
+  "CitizenshipList": [
+    {
+      "Citizenship": "India",
+      "CitizenshipCode": "In",
+      "LanguageCode": "en"
+    },
+    {
+      "Citizenship": "USA",
+      "CitizenshipCode": "Us",
+      "LanguageCode": "en"
+    },
+    {
+      "Citizenship": "England",
+      "CitizenshipCode": "Eng",
+      "LanguageCode": "en"
+    },
+    {
+      "Citizenship": "Russia",
+      "CitizenshipCode": "Rus",
+      "LanguageCode": "en"
+    } , 
+   {
+      "Citizenship": "Pakistan",
+      "CitizenshipCode": "Pak",
+      "LanguageCode": "en"
+    },
+    {
+      "Citizenship": "China",
+      "CitizenshipCode": "Chn",
       "LanguageCode": "en"
     }
   ]

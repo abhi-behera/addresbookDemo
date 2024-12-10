@@ -7,7 +7,7 @@ import 'package:dumyapp1/model/userprofile_model/userprofile_class_model.dart';
 class UserProfile {
   bool? status;
   dynamic errorType;
-  UserProfileClass? userProfile;
+  UserProfileClass? userProfileClass;
   bool? userProfileFilled;
   List<DynamicFieldList>? dynamicFieldList;
   List<GenderList>? genderList;
@@ -15,7 +15,7 @@ class UserProfile {
   UserProfile({
     this.status,
     this.errorType,
-    this.userProfile,
+    this.userProfileClass,
     this.userProfileFilled,
     this.dynamicFieldList,
     this.genderList,
@@ -29,7 +29,7 @@ class UserProfile {
   factory UserProfile.fromJson(Map<String, dynamic> json) => UserProfile(
         status: json["Status"],
         errorType: json["errorType"],
-        userProfile: json["userProfile"] == null
+        userProfileClass: json["userProfile"] == null
             ? null
             : UserProfileClass.fromJson(json["userProfile"]),
         userProfileFilled: json["UserProfileFilled"],
@@ -46,7 +46,7 @@ class UserProfile {
   Map<String, dynamic> toJson() => {
         "Status": status,
         "errorType": errorType,
-        "userProfile": userProfile?.toJson(),
+        "userProfile": userProfileClass?.toJson(),
         "UserProfileFilled": userProfileFilled,
         "DynamicFieldList": dynamicFieldList == null
             ? []
