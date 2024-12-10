@@ -4,6 +4,7 @@ import 'package:dumyapp1/model/userprofile_model/userprofile_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 
 class USerProfile extends StatefulWidget {
   const USerProfile({super.key});
@@ -16,7 +17,8 @@ class _USerProfileState extends State<USerProfile> {
   UserProfile userProfile = UserProfile();
   final Map<String, TextEditingController> textControllers = {};
   final Map<String, String> dropdownValues = {};
-
+  List<String> radioOptionList = ["Yes", "No"];
+  String selectedOption = "Yes";
   Future<UserProfile?> loadFormData() async {
     try {
       final String jsonString =
@@ -27,9 +29,17 @@ class _USerProfileState extends State<USerProfile> {
       }
       userProfile = UserProfile.fromJson(jsonData);
 
-      for (var field in userProfile.dynamicFieldList ?? []) {
-        if (field.fieldType == "DropDown") {}
+      String? inputDate = userProfile.userProfileClass?.toJson()["DateOfBirth"];
 
+      // Parse the input date string
+      DateTime? parsedDate =
+          DateFormat("MM/dd/yyyy hh:mm:ss a").parse(inputDate!);
+
+      // Format the date to "Jan-04-2020"
+      String? formattedDate = DateFormat("MMM-dd-yyyy").format(parsedDate);
+
+      print(formattedDate); // Output: Jan-04-2020
+      for (var field in userProfile.dynamicFieldList ?? []) {
         switch (field.fieldType) {
           case "TextBox":
             textControllers[field.fieldCode ?? ""] = TextEditingController(
@@ -49,6 +59,12 @@ class _USerProfileState extends State<USerProfile> {
                   : userProfile.userProfileClass?.toJson()[field.fieldType] ??
                       "",
             );
+            break;
+
+          case "Calendar":
+            textControllers[field.fieldCode ?? ""] =
+                TextEditingController(text: formattedDate ?? "");
+            break;
         }
       }
       return userProfile;
@@ -102,6 +118,20 @@ class _USerProfileState extends State<USerProfile> {
                           ),
                         ),
                       );
+                    case 'Calendar':
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextField(
+                          enabled:
+                              (textControllers[field.fieldCode]?.text != "")
+                                  ? false
+                                  : true,
+                          controller: textControllers[field.fieldCode],
+                          decoration: InputDecoration(
+                            labelText: field.fieldTitle,
+                          ),
+                        ),
+                      );
                     case 'Email':
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -139,50 +169,32 @@ class _USerProfileState extends State<USerProfile> {
                         ),
                       );
 
-                    // case 'RadioButton':
-                    //   return Padding(
-                    //     padding: const EdgeInsets.all(8.0),
-                    //     child: Column(
-                    //       crossAxisAlignment: CrossAxisAlignment.start,
-                    //       children: [
-                    //         Text(
-                    //           field.fieldTitle.toString(),
-                    //           style:
-                    //               const TextStyle(fontWeight: FontWeight.bold),
-                    //         ),
-                    //         ...field.fieldOptions!.map<Widget>((option) {
-                    //           return RadioListTile(
-                    //             title: Text(option.text),
-                    //             value: option.value,
-                    //             groupValue: fieldData.fieldValue,
-                    //             onChanged: (value) {
-                    //               setState(() {
-                    //                 fieldData.fieldValue = value;
-                    //               });
-                    //             },
-                    //           );
-                    //         }).toList(),
-                    //       ],
-                    //     ),
-                    //   );
-                    // case 'Dropdown':
-                    //   return Padding(
-                    //     padding: const EdgeInsets.all(8.0),
-                    //     child: DropdownButtonFormField(
-                    //       decoration: InputDecoration(
-                    //         labelText: field.fieldTitle,
-                    //         border: const OutlineInputBorder(),
-                    //       ),
-                    //       items: (field.fieldOptions as List<dynamic>)
-                    //           .map<DropdownMenuItem<Object>>(
-                    //               (option) => DropdownMenuItem<Object>(
-                    //                     value: option.value,
-                    //                     child: Text(option.text),
-                    //                   ))
-                    //           .toList(),
-                    //       onChanged: (value) {},
-                    //     ),
-                    //   );
+                    case 'RadioButton':
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              field.fieldTitle.toString(),
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            ...radioOptionList.map<Widget>((option) {
+                              return RadioListTile(
+                                title: Text(option),
+                                value: option,
+                                groupValue: selectedOption,
+                                onChanged: (value) {
+                                  setState(() {
+                                    selectedOption = value!;
+                                  });
+                                },
+                              );
+                            }).toList(),
+                          ],
+                        ),
+                      );
                     default:
                       return const SizedBox();
                   }
@@ -201,7 +213,7 @@ class _USerProfileState extends State<USerProfile> {
               backgroundColor: appBarColor,
               textStyle: TextStyle(color: textColor)),
           onPressed: () {},
-          child: const Text("UPDATE"),
+          child: const Text("SAVE"),
         ),
       ),
     );
