@@ -1,3 +1,4 @@
+import 'package:dumyapp1/view/Home/user_profile.dart';
 import 'package:dumyapp1/view/address_list_page.dart';
 import 'package:dumyapp1/const_values.dart';
 import 'package:dumyapp1/view/Home/home_page.dart';
@@ -32,10 +33,10 @@ class NavbarScreenState extends State<NavbarScreen> {
 
     switch (_selectedIndex) {
       case 1:
-        currentWidgetPage = HomePage();
+        currentWidgetPage = const HomePage();
         break;
       case 2:
-        currentWidgetPage = Profilepage();
+        currentWidgetPage = const Profilepage();
         break;
     }
     return Scaffold(
@@ -103,6 +104,20 @@ class NavbarScreenState extends State<NavbarScreen> {
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => AddressListPage()));
+            },
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.person_2_rounded,
+              color: Colors.white,
+            ),
+            title: const Text('User Profile',
+                style: TextStyle(
+                  color: Colors.white,
+                )),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => USerProfile()));
             },
           ),
         ],
