@@ -19,9 +19,10 @@ class NavbarScreenState extends State<NavbarScreen> {
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
       if (index == 0) {
         _scaffoldKey.currentState?.openDrawer();
+      } else {
+        _selectedIndex = index;
       }
     });
   }
