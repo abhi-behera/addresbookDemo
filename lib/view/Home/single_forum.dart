@@ -36,7 +36,6 @@ class _SingleForumPageState extends State<SingleForumPage> {
   }
 
   Widget _buildField(Field fieldData, BuildContext context) {
-    print("field val : ${fieldData.fieldValue}");
     switch (fieldData.fieldType) {
       case 'InputBox':
         return Padding(
@@ -49,14 +48,22 @@ class _SingleForumPageState extends State<SingleForumPage> {
           ),
         );
       case 'RadioButton':
-        return Padding(
-          padding: const EdgeInsets.all(8.0),
+        return Container(
+          margin: const EdgeInsets.all(10.0),
+          decoration: BoxDecoration(
+            border: Border.all(color: const Color.fromARGB(255, 109, 125, 151)),
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          padding: const EdgeInsets.all(6.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                fieldData.fieldName.toString(),
-                style: const TextStyle(fontWeight: FontWeight.bold),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0, top: 10.0),
+                child: Text(
+                  fieldData.fieldName.toString(),
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
               ),
               ...fieldData.fieldOptions!.map<Widget>((option) {
                 return RadioListTile(
@@ -142,7 +149,7 @@ class _SingleForumPageState extends State<SingleForumPage> {
             }
             if (data.hasData) {
               return ListView(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(16.0),
                 children: frm.fields!
                     .map((field) => _buildField(field, context))
                     .toList(),
@@ -154,7 +161,8 @@ class _SingleForumPageState extends State<SingleForumPage> {
             }
           }),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.only(
+            left: 24.0, bottom: 8.0, top: 8.0, right: 24.0),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
               backgroundColor: appBarColor,

@@ -35,10 +35,8 @@ class _USerProfileState extends State<USerProfile> {
       DateTime? parsedDate =
           DateFormat("MM/dd/yyyy hh:mm:ss a").parse(inputDate!);
 
-      // Format the date to "Jan-04-2020"
       String? formattedDate = DateFormat("MMM-dd-yyyy").format(parsedDate);
 
-      print(formattedDate); // Output: Jan-04-2020
       for (var field in userProfile.dynamicFieldList ?? []) {
         switch (field.fieldType) {
           case "TextBox":
@@ -115,6 +113,12 @@ class _USerProfileState extends State<USerProfile> {
                           controller: textControllers[field.fieldCode],
                           decoration: InputDecoration(
                             labelText: field.fieldTitle,
+                            suffixIcon: IconButton(
+                              onPressed:
+                                  textControllers[field.fieldCode]?.clear,
+                              icon: const Icon(Icons.clear),
+                            ),
+                            border: const OutlineInputBorder(),
                           ),
                         ),
                       );
@@ -129,6 +133,7 @@ class _USerProfileState extends State<USerProfile> {
                           controller: textControllers[field.fieldCode],
                           decoration: InputDecoration(
                             labelText: field.fieldTitle,
+                            border: const OutlineInputBorder(),
                           ),
                         ),
                       );
@@ -142,6 +147,12 @@ class _USerProfileState extends State<USerProfile> {
                                   : true,
                           controller: textControllers[field.fieldCode],
                           decoration: InputDecoration(
+                            border: const OutlineInputBorder(),
+                            suffixIcon: IconButton(
+                              onPressed:
+                                  textControllers[field.fieldCode]?.clear,
+                              icon: const Icon(Icons.clear),
+                            ),
                             labelText: field.fieldTitle,
                           ),
                         ),
@@ -165,20 +176,31 @@ class _USerProfileState extends State<USerProfile> {
                           }).toList(),
                           decoration: InputDecoration(
                             labelText: field.fieldTitle,
+                            border: const OutlineInputBorder(),
                           ),
                         ),
                       );
 
                     case 'RadioButton':
-                      return Padding(
+                      return Container(
+                        margin: const EdgeInsets.all(10.0),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                              color: const Color.fromARGB(255, 109, 125, 151)),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              field.fieldTitle.toString(),
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 10.0, top: 10.0),
+                              child: Text(
+                                field.fieldTitle.toString(),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold),
+                              ),
                             ),
                             ...radioOptionList.map<Widget>((option) {
                               return RadioListTile(
@@ -199,6 +221,7 @@ class _USerProfileState extends State<USerProfile> {
                       return const SizedBox();
                   }
                 },
+                padding: const EdgeInsets.all(16.0),
               );
             } else {
               return const Center(
@@ -207,7 +230,8 @@ class _USerProfileState extends State<USerProfile> {
             }
           }),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.only(
+            left: 24.0, bottom: 8.0, top: 8.0, right: 24.0),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
               backgroundColor: appBarColor,

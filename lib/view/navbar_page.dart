@@ -37,7 +37,7 @@ class NavbarScreenState extends State<NavbarScreen> {
         currentWidgetPage = const HomePage();
         break;
       case 2:
-        currentWidgetPage = const Profilepage();
+        currentWidgetPage = const USerProfile();
         break;
     }
     return Scaffold(
@@ -59,19 +59,19 @@ class NavbarScreenState extends State<NavbarScreen> {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          const DrawerHeader(
+          DrawerHeader(
             child: Row(children: [
-              CircleAvatar(
-                radius: 40,
-                backgroundColor: Colors.grey,
-                child: Icon(
-                  Icons.person,
-                  size: 80,
-                  color: Colors.blueGrey,
+              ClipRRect(
+                borderRadius: BorderRadius.circular(50),
+                child: CircleAvatar(
+                  radius: 40,
+                  backgroundColor: Colors.grey,
+                  child: Image.network(
+                      'https://media.licdn.com/dms/image/v2/C5603AQG4etc2xCWQ3Q/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1611021380076?e=1739404800&v=beta&t=21LRZZ1mYJYcfJnLh2sk_776leUaUE4j0-ZQd2kfhTQ'),
                 ),
               ),
-              SizedBox(width: 20),
-              Column(
+              const SizedBox(width: 20),
+              const Column(
                 children: [
                   SizedBox(
                     height: 40,
@@ -103,8 +103,10 @@ class NavbarScreenState extends State<NavbarScreen> {
                   color: Colors.white,
                 )),
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => AddressListPage()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const AddressListPage()));
             },
           ),
           ListTile(
@@ -118,7 +120,7 @@ class NavbarScreenState extends State<NavbarScreen> {
                 )),
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => USerProfile()));
+                  MaterialPageRoute(builder: (context) => const USerProfile()));
             },
           ),
         ],
