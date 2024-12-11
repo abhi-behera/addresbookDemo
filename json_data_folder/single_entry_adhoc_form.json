@@ -7,7 +7,7 @@
   "Fields": [
     {
       "FieldID": "15445",
-      "FieldName": "Name",
+      "FieldName": "First Name",
       "FieldType": "InputBox",
       "FieldValue": "",
       "FieldMaxLength": "100",
@@ -51,7 +51,7 @@
     },
     {
       "FieldID": "25445",
-      "FieldName": "Name",
+      "FieldName": "Last Name",
       "FieldType": "InputBox",
       "FieldValue": "",
       "FieldMaxLength": "100",

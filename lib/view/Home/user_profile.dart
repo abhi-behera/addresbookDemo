@@ -94,7 +94,7 @@ class _USerProfileState extends State<USerProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar("Dynamic Form"),
+      appBar: customAppBar("USER PROFILE"),
       body: FutureBuilder(
           future: loadFormData(),
           builder: (context, data) {

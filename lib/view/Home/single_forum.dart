@@ -19,6 +19,7 @@ class _SingleForumPageState extends State<SingleForumPage> {
 
   final DateFormat dateFormat = DateFormat("yyyy-MM-dd'T'HH:mm:ss");
   DateTime? pickedDate;
+  String? SelectedGender = "5364";
   Future<FormData?> loadFormData() async {
     try {
       final String jsonString = await rootBundle
@@ -35,6 +36,7 @@ class _SingleForumPageState extends State<SingleForumPage> {
   }
 
   Widget _buildField(Field fieldData, BuildContext context) {
+    print("field val : ${fieldData.fieldValue}");
     switch (fieldData.fieldType) {
       case 'InputBox':
         return Padding(
@@ -60,10 +62,10 @@ class _SingleForumPageState extends State<SingleForumPage> {
                 return RadioListTile(
                   title: Text(option.text),
                   value: option.value,
-                  groupValue: fieldData.fieldValue,
+                  groupValue: SelectedGender,
                   onChanged: (value) {
                     setState(() {
-                      fieldData.fieldValue = value;
+                      SelectedGender = value;
                     });
                   },
                 );
