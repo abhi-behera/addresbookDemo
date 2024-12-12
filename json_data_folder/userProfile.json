@@ -15,7 +15,7 @@
     "StateCode": null,
     "Address": null,
     "ZipCode": null,
-    "CitizenShip": "AL",
+    "CitizenShip": "AU",
     "DateOfBirth": "04/01/2020 12:00:00 AM",
     "InstituteID": "57",
     "StudentCategoryID": "3",
@@ -159,11 +159,11 @@
       "FieldType": "FileUpload"
     },
     {
-      "FieldCode": "Citizenship",
+      "FieldCode": "CitizenShip",
       "IsMandate": false,
       "IsReadonly": true,
       "RegularExpression": "",
-      "FieldTitle": "Citizenship",
+      "FieldTitle": "CitizenShip",
       "FieldHelpText": "",
       "FieldInfo": "",
       "IsVisible": true,
@@ -231,35 +231,65 @@
       "LanguageCode": "en"
     }
   ],
-  "CitizenshipList": [
+  "CitizenShipList": [
     {
-      "Citizenship": "India",
-      "CitizenshipCode": "In",
+      "CitizenShip": "AU",
+      "CitizenShipCode": "Australia",
       "LanguageCode": "en"
     },
     {
-      "Citizenship": "USA",
-      "CitizenshipCode": "Us",
+      "CitizenShip": "CD",
+      "CitizenShipCode": "Canada",
       "LanguageCode": "en"
     },
     {
-      "Citizenship": "England",
-      "CitizenshipCode": "Eng",
+      "CitizenShip": "IN",
+      "CitizenShipCode": "India",
       "LanguageCode": "en"
     },
     {
-      "Citizenship": "Russia",
-      "CitizenshipCode": "Rus",
-      "LanguageCode": "en"
-    } , 
-   {
-      "Citizenship": "Pakistan",
-      "CitizenshipCode": "Pak",
+      "CitizenShip": "NP",
+      "CitizenShipCode": "Nepal",
       "LanguageCode": "en"
     },
     {
-      "Citizenship": "China",
-      "CitizenshipCode": "Chn",
+      "CitizenShip": "PAK",
+      "CitizenShipCode": "Pakistan",
+      "LanguageCode": "en"
+    },
+    {
+      "CitizenShip": "TH",
+      "CitizenShipCode": "Thailand",
+      "LanguageCode": "en"
+    },
+    {
+      "CitizenShip": "TR",
+      "CitizenShipCode": "Turkey",
+      "LanguageCode": "en"
+    },
+    {
+      "CitizenShip": "UA",
+      "CitizenShipCode": "Ukraine",
+      "LanguageCode": "en"
+    },
+    {
+      "CitizenShip": "UG",
+      "CitizenShipCode": "Uganda",
+      "LanguageCode": "en"
+    },
+    {
+      "CitizenShip": "UK",
+      "CitizenShipCode": "United Kingdom",
+      "LanguageCode": "en"
+    },
+    {
+      "CitizenShip": "US",
+      "CitizenShipCode": "United States",
+      "LanguageCode": "en"
+    },
+    {
+      "CitizenShip": "VN",
+      "CitizenShipCode": "Vietnam",
       "LanguageCode": "en"
     }
   ]

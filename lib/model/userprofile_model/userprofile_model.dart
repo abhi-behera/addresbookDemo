@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dumyapp1/model/dynamicfield_model/dynamicfield_model.dart';
+import 'package:dumyapp1/model/userprofile_model/citizenship_model.dart';
 import 'package:dumyapp1/model/userprofile_model/gender_list_model.dart';
 import 'package:dumyapp1/model/userprofile_model/userprofile_class_model.dart';
 
@@ -11,6 +12,7 @@ class UserProfile {
   bool? userProfileFilled;
   List<DynamicFieldList>? dynamicFieldList;
   List<GenderList>? genderList;
+  List<CitizenShipList>? citizenShipList;
 
   UserProfile({
     this.status,
@@ -19,6 +21,7 @@ class UserProfile {
     this.userProfileFilled,
     this.dynamicFieldList,
     this.genderList,
+    this.citizenShipList,
   });
 
   factory UserProfile.fromRawJson(String str) =>
@@ -41,6 +44,10 @@ class UserProfile {
             ? []
             : List<GenderList>.from(
                 json["GenderList"]!.map((x) => GenderList.fromJson(x))),
+        citizenShipList: json["CitizenShipList"] == null
+            ? []
+            : List<CitizenShipList>.from(json["CitizenShipList"]!
+                .map((x) => CitizenShipList.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -54,5 +61,8 @@ class UserProfile {
         "GenderList": genderList == null
             ? []
             : List<dynamic>.from(genderList!.map((x) => x.toJson())),
+        "CitizenShipList": citizenShipList == null
+            ? []
+            : List<dynamic>.from(citizenShipList!.map((x) => x.toJson())),
       };
 }

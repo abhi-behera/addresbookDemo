@@ -25,9 +25,6 @@ class Field {
   });
 
   factory Field.fromJson(Map<String, dynamic> json) {
-    if (kDebugMode) {
-      print("Field model constructor called ");
-    }
     return Field(
       fieldID: json['FieldID'],
       fieldName: json['FieldName'],

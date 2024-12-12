@@ -75,15 +75,6 @@ class _USerProfileState extends State<USerProfile> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    loadFormData();
-    if (kDebugMode) {
-      print("data : ${userProfile.dynamicFieldList}");
-    }
-  }
-
-  @override
   void dispose() {
     textControllers.forEach((_, controller) => controller.dispose());
     super.dispose();
@@ -162,18 +153,27 @@ class _USerProfileState extends State<USerProfile> {
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: DropdownButtonFormField(
-                          value: usrProfileClass?.gender.toString(),
+                          value: (field.fieldCode.toString() == "Gender")
+                              ? usrProfileClass?.gender.toString()
+                              : usrProfileClass?.citizenShip.toString(),
                           onChanged: (newValue) {
                             setState(() {
                               dropdownValues[field.fieldCode ?? ""] = newValue!;
                             });
                           },
-                          items: userProfile.genderList?.map((gender) {
-                            return DropdownMenuItem(
-                              value: gender.genderCode,
-                              child: Text(gender.gender ?? ""),
-                            );
-                          }).toList(),
+                          items: (field.fieldCode.toString() == "Gender")
+                              ? userProfile.genderList?.map((gender) {
+                                  return DropdownMenuItem(
+                                    value: gender.genderCode,
+                                    child: Text(gender.gender ?? ""),
+                                  );
+                                }).toList()
+                              : userProfile.citizenShipList?.map((citizen) {
+                                  return DropdownMenuItem(
+                                    value: citizen.citizenShip,
+                                    child: Text(citizen.citizenShipCode ?? ""),
+                                  );
+                                }).toList(),
                           decoration: InputDecoration(
                             labelText: field.fieldTitle,
                             border: const OutlineInputBorder(),

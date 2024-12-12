@@ -16,7 +16,7 @@ class SingleForumPage extends StatefulWidget {
 
 class _SingleForumPageState extends State<SingleForumPage> {
   FormData frm = FormData();
-
+  final Map<String, TextEditingController> textController = {};
   final DateFormat dateFormat = DateFormat("yyyy-MM-dd'T'HH:mm:ss");
   DateTime? pickedDate;
   String? SelectedGender = "5364";
@@ -35,12 +35,19 @@ class _SingleForumPageState extends State<SingleForumPage> {
     return null;
   }
 
+  @override
+  void dispose() {
+    textController.forEach((_, controller) => controller.dispose());
+    super.dispose();
+  }
+
   Widget _buildField(Field fieldData, BuildContext context) {
     switch (fieldData.fieldType) {
       case 'InputBox':
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: TextField(
+            controller: textController[fieldData.fieldID],
             decoration: InputDecoration(
               labelText: fieldData.fieldName,
               border: const OutlineInputBorder(),
