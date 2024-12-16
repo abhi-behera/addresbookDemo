@@ -1,5 +1,6 @@
 import 'dart:convert';
-import 'package:dumyapp1/const_values.dart';
+import 'package:dumyapp1/utill/utill_values.dart';
+import 'package:dumyapp1/view/CustomWidgets/custom_widgets.dart';
 import 'package:dumyapp1/model/fieldsModel/formdata_fields_model.dart';
 import 'package:dumyapp1/model/fieldsModel/formdata_model.dart';
 import 'package:flutter/foundation.dart';
@@ -16,10 +17,13 @@ class SingleForumPage extends StatefulWidget {
 
 class _SingleForumPageState extends State<SingleForumPage> {
   FormData frm = FormData();
+  // Todo : add this controller to model...
   final Map<String, TextEditingController> textController = {};
   final DateFormat dateFormat = DateFormat("yyyy-MM-dd'T'HH:mm:ss");
   DateTime? pickedDate;
-  String? SelectedGender = "5364";
+
+  // Todo : remove this _selectedGender var...
+  String? _selectedGender = "5364";
   Future<FormData?> loadFormData() async {
     try {
       final String jsonString = await rootBundle
@@ -43,7 +47,7 @@ class _SingleForumPageState extends State<SingleForumPage> {
 
   Widget _buildField(Field fieldData, BuildContext context) {
     switch (fieldData.fieldType) {
-      case 'InputBox':
+      case SingleFormUtill.singleFormTextBox:
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: TextField(
@@ -54,7 +58,7 @@ class _SingleForumPageState extends State<SingleForumPage> {
             ),
           ),
         );
-      case 'RadioButton':
+      case SingleFormUtill.singleFormRadioButton:
         return Container(
           margin: const EdgeInsets.all(10.0),
           decoration: BoxDecoration(
@@ -76,10 +80,10 @@ class _SingleForumPageState extends State<SingleForumPage> {
                 return RadioListTile(
                   title: Text(option.text),
                   value: option.value,
-                  groupValue: SelectedGender,
+                  groupValue: _selectedGender,
                   onChanged: (value) {
                     setState(() {
-                      SelectedGender = value;
+                      _selectedGender = value;
                     });
                   },
                 );
@@ -87,7 +91,7 @@ class _SingleForumPageState extends State<SingleForumPage> {
             ],
           ),
         );
-      case 'Calendar':
+      case SingleFormUtill.singleFormCalender:
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: GestureDetector(
@@ -121,7 +125,7 @@ class _SingleForumPageState extends State<SingleForumPage> {
             ),
           ),
         );
-      case 'Dropdown':
+      case SingleFormUtill.singleFormDropDown:
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: DropdownButtonFormField(
@@ -169,7 +173,7 @@ class _SingleForumPageState extends State<SingleForumPage> {
           }),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(
-            left: 24.0, bottom: 8.0, top: 8.0, right: 24.0),
+            left: 130.0, bottom: 8.0, top: 8.0, right: 130.0),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
               backgroundColor: appBarColor,

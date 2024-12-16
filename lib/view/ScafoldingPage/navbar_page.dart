@@ -1,8 +1,7 @@
-import 'package:dumyapp1/view/Home/user_profile.dart';
-import 'package:dumyapp1/view/address_list_page.dart';
-import 'package:dumyapp1/const_values.dart';
+import 'package:dumyapp1/utill/utill_values.dart';
+import 'package:dumyapp1/view/UserProfile/user_profile.dart';
+import 'package:dumyapp1/view/Addressbook/address_list_page.dart';
 import 'package:dumyapp1/view/Home/home_page.dart';
-import 'package:dumyapp1/view/profilePage.dart';
 import 'package:flutter/material.dart';
 
 class NavbarScreen extends StatefulWidget {
@@ -30,19 +29,9 @@ class NavbarScreenState extends State<NavbarScreen> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width * 0.6;
-    Widget currentWidgetPage = const SizedBox.shrink();
-
-    switch (_selectedIndex) {
-      case 1:
-        currentWidgetPage = const HomePage();
-        break;
-      case 2:
-        currentWidgetPage = const USerProfile();
-        break;
-    }
     return Scaffold(
       key: _scaffoldKey,
-      body: currentWidgetPage,
+      body: (_selectedIndex == 1) ? const HomePage() : const USerProfile(),
       drawer: drawer(screenWidth, context),
       bottomNavigationBar: bottomnavBar(),
     );

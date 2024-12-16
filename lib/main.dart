@@ -1,5 +1,5 @@
 import 'package:dumyapp1/provider/address_provider_page.dart';
-import 'package:dumyapp1/view/navbar_page.dart';
+import 'package:dumyapp1/view/ScafoldingPage/navbar_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -10,7 +10,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => AddressProvider()),
         // ChangeNotifierProvider(create: (_) => FormProvider()),
       ],
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }

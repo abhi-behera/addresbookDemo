@@ -16,6 +16,7 @@ class DynamicFieldList {
   FormCode? formCode;
   String? componentId;
   String? fieldType;
+  String? textControllers;
 
   DynamicFieldList({
     this.fieldCode,
@@ -31,6 +32,7 @@ class DynamicFieldList {
     this.formCode,
     this.componentId,
     this.fieldType,
+    this.textControllers,
   });
 
   factory DynamicFieldList.fromRawJson(String str) =>
