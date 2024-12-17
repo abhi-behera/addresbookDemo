@@ -1,64 +1,34 @@
+import 'dart:convert';
+
+import 'package:dumyapp1/model/fieldsModel/formdata_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-class FormProvider extends ChangeNotifier {
-  // final List<FormfieldModel> _fields = [];
-  // final Map<String?, TextEditingController> _controllers = {};
-  // List<FormfieldModel> get fields => _fields;
-  // Map<String?, TextEditingController> get controllers => _controllers;
+class SingleEntryProvider extends ChangeNotifier {
+  FormData? singleEntry;
+  bool isLoading = true;
+  String? errorMessage;
 
-  // void setFields(List<FormfieldModel> fields) {
-  //   _fields.clear();
-  //   _controllers.clear();
-  //   _fields.addAll(fields);
+  SingleEntryProvider() {
+    loadFormData();
+  }
 
-  // Initialize controllers for each field
-  //   for (var field in fields) {
-  //     if (field.fieldType == "InputBox") {
-  //       _controllers[field.fieldId] =
-  //           TextEditingController(text: field.fieldValue);
-  //     }
-  //   }
-  //   notifyListeners();
-  // }
+  Future<void> loadFormData() async {
+    try {
+      isLoading = true;
+      notifyListeners();
 
-  // void updateFieldValue(String fieldID, String value) {
-  //   final field = _fields.firstWhere((field) => field.fieldId == fieldID);
-  //   field.fieldValue = value;
+      final String jsonString = await rootBundle
+          .loadString('json_data_folder/single_entry_adhoc_form.json');
+      final Map<String, dynamic> jsonData = jsonDecode(jsonString);
+      singleEntry = FormData.fromJson(jsonData);
 
-  // Update controller value
-  //   if (_controllers.containsKey(fieldID)) {
-  //     _controllers[fieldID]!.text = value;
-  //   }
-  //   notifyListeners();
-  // }
-
-  // void disposeControllers() {
-  //   // Dispose all controllers
-  //   _controllers.values.forEach((controller) => controller.dispose());
-  // }
-
-  // Future<List<FormData>> loadFormData() async {
-  // print("load data called");
-  // // WidgetsFlutterBinding.ensureInitialized();
-
-  // final jsonString =
-  //     await rootBundle.loadString('assets/single_entry_adhoc_form.json');
-  // final jsonData = jsonDecode(jsonString);
-
-  // Future<void> loadFormData() async {
-  //   if (kDebugMode) {
-  //     print("load data called");
-  //   }
-  //   final String jsonString = await rootBundle
-  //       .loadString('json_data_folder/single_entry_adhoc_form.json');
-  //   if (kDebugMode) {
-  //     print("jsonString : $jsonString");
-  //   }
-  //   final jsonData = json.decode(jsonString);
-  //   // }
-
-  //   notifyListeners();
-  //   return jsonData.map<FormData>(FormData.fromJson).toList();
-  // }
+      isLoading = false;
+    } catch (e) {
+      isLoading = false;
+      errorMessage = "Error: $e";
+    }
+    notifyListeners();
+  }
 }

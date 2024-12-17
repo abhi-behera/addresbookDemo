@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:dumyapp1/provider/formfield_provider.dart';
 import 'package:dumyapp1/utill/utill_values.dart';
 import 'package:dumyapp1/view/CustomWidgets/custom_widgets.dart';
 import 'package:dumyapp1/model/fieldsModel/formdata_fields_model.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class SingleForumPage extends StatefulWidget {
   const SingleForumPage({super.key});
@@ -16,7 +18,7 @@ class SingleForumPage extends StatefulWidget {
 }
 
 class _SingleForumPageState extends State<SingleForumPage> {
-  FormData frm = FormData();
+  // FormData frm = FormData();
   // Todo : add this controller to model...
   final Map<String, TextEditingController> textController = {};
   final DateFormat dateFormat = DateFormat("yyyy-MM-dd'T'HH:mm:ss");
@@ -24,20 +26,20 @@ class _SingleForumPageState extends State<SingleForumPage> {
 
   // Todo : remove this _selectedGender var...
   String? _selectedGender = "5364";
-  Future<FormData?> loadFormData() async {
-    try {
-      final String jsonString = await rootBundle
-          .loadString('json_data_folder/single_entry_adhoc_form.json');
-      final Map<String, dynamic> jsonData = jsonDecode(jsonString);
-      frm = FormData.fromJson(jsonData);
-      return frm;
-    } catch (e) {
-      if (kDebugMode) {
-        print("error caught : $e");
-      }
-    }
-    return null;
-  }
+  // Future<FormData?> loadFormData() async {
+  //   try {
+  //     final String jsonString = await rootBundle
+  //         .loadString('json_data_folder/single_entry_adhoc_form.json');
+  //     final Map<String, dynamic> jsonData = jsonDecode(jsonString);
+  //     frm = FormData.fromJson(jsonData);
+  //     return frm;
+  //   } catch (e) {
+  //     if (kDebugMode) {
+  //       print("error caught : $e");
+  //     }
+  //   }
+  //   return null;
+  // }
 
   @override
   void dispose() {
@@ -45,7 +47,7 @@ class _SingleForumPageState extends State<SingleForumPage> {
     super.dispose();
   }
 
-  Widget _buildField(Field fieldData, BuildContext context) {
+  Widget _buildField(Field fieldData, SingleEntryProvider singleEntry) {
     switch (fieldData.fieldType) {
       case SingleFormUtill.singleFormTextBox:
         return Padding(
@@ -150,38 +152,43 @@ class _SingleForumPageState extends State<SingleForumPage> {
 
   @override
   Widget build(BuildContext context) {
+    final singleEntryProvider =
+        Provider.of<SingleEntryProvider>(context, listen: true);
+
     return Scaffold(
       appBar: customAppBar("SINGLE ENTRY"),
-      body: FutureBuilder(
-          future: loadFormData(),
-          builder: (context, data) {
-            if (data.hasError) {
-              return Center(child: Text(data.error.toString()));
-            }
-            if (data.hasData) {
-              return ListView(
-                padding: const EdgeInsets.all(16.0),
-                children: frm.fields!
-                    .map((field) => _buildField(field, context))
-                    .toList(),
-              );
-            } else {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          }),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(
-            left: 130.0, bottom: 8.0, top: 8.0, right: 130.0),
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-              backgroundColor: appBarColor,
-              textStyle: TextStyle(color: textColor)),
-          onPressed: () {},
-          child: const Text("SUBMIT"),
-        ),
-      ),
+      body: singleEntryProvider.isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : singleEntryProvider.errorMessage != null
+              ? Center(child: Text(singleEntryProvider.errorMessage!))
+              : ListView.builder(
+                  itemCount:
+                      (singleEntryProvider.singleEntry?.fields?.length ?? 0) +
+                          1,
+                  itemBuilder: (context, index) {
+                    if (index ==
+                        (singleEntryProvider.singleEntry?.fields?.length ??
+                            0)) {
+                      return Padding(
+                        padding: const EdgeInsets.fromLTRB(130, 5, 130, 8),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: appBarColor,
+                          ),
+                          onPressed: () {},
+                          child: const Text("SAVE"),
+                        ),
+                      );
+                    } else {
+                      final field =
+                          singleEntryProvider.singleEntry?.fields![index];
+                      return Padding(
+                        padding: const EdgeInsets.only(left: 10, right: 10),
+                        child: _buildField(field!, singleEntryProvider),
+                      );
+                    }
+                  },
+                ),
     );
   }
 }
