@@ -1,4 +1,5 @@
 import 'package:dumyapp1/utill/utill_values.dart';
+import 'package:dumyapp1/view/Home/movies.dart';
 import 'package:dumyapp1/view/UserProfile/user_profile.dart';
 import 'package:dumyapp1/view/Addressbook/address_list_page.dart';
 import 'package:dumyapp1/view/Home/home_page.dart';
@@ -96,6 +97,20 @@ class NavbarScreenState extends State<NavbarScreen> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => const AddressListPage()));
+            },
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.video_collection,
+              color: Colors.white,
+            ),
+            title: const Text('My Movie List',
+                style: TextStyle(
+                  color: Colors.white,
+                )),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const MoviesPage()));
             },
           ),
           ListTile(

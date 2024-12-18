@@ -252,11 +252,14 @@ class AddressFormPageState extends State<AddressFormPage> {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  ElevatedButton(
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: appBarColor),
-                    onPressed: saveAddress,
-                    child: const Text('Save'),
+                  SizedBox(
+                    width: screenWidth * 0.4,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: appBarColor),
+                      onPressed: saveAddress,
+                      child: const Text('Save'),
+                    ),
                   ),
                 ],
               ),

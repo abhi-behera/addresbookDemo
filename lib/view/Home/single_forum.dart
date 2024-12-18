@@ -1,12 +1,10 @@
-import 'dart:convert';
 import 'package:dumyapp1/provider/formfield_provider.dart';
+import 'package:dumyapp1/provider/movie_provider.dart';
 import 'package:dumyapp1/utill/utill_values.dart';
 import 'package:dumyapp1/view/CustomWidgets/custom_widgets.dart';
 import 'package:dumyapp1/model/fieldsModel/formdata_fields_model.dart';
-import 'package:dumyapp1/model/fieldsModel/formdata_model.dart';
-import 'package:flutter/foundation.dart';
+import 'package:dumyapp1/view/Home/movies.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -18,7 +16,6 @@ class SingleForumPage extends StatefulWidget {
 }
 
 class _SingleForumPageState extends State<SingleForumPage> {
-  // FormData frm = FormData();
   // Todo : add this controller to model...
   final Map<String, TextEditingController> textController = {};
   final DateFormat dateFormat = DateFormat("yyyy-MM-dd'T'HH:mm:ss");
@@ -26,20 +23,6 @@ class _SingleForumPageState extends State<SingleForumPage> {
 
   // Todo : remove this _selectedGender var...
   String? _selectedGender = "5364";
-  // Future<FormData?> loadFormData() async {
-  //   try {
-  //     final String jsonString = await rootBundle
-  //         .loadString('json_data_folder/single_entry_adhoc_form.json');
-  //     final Map<String, dynamic> jsonData = jsonDecode(jsonString);
-  //     frm = FormData.fromJson(jsonData);
-  //     return frm;
-  //   } catch (e) {
-  //     if (kDebugMode) {
-  //       print("error caught : $e");
-  //     }
-  //   }
-  //   return null;
-  // }
 
   @override
   void dispose() {
