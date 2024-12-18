@@ -24,11 +24,13 @@ class MoviesPage extends StatelessWidget {
             itemBuilder: (context, index) {
               final MoviesModel movie = movieProvider.movies[index];
               return ListTile(
-                leading: Text(movie.id.toString()),
+                leading: Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 6),
+                  child: Text(movie.id.toString()),
+                ),
                 title: Text(movie.movieName!),
-                subtitle: Text('${movie.rating}'),
+                subtitle: Text('Rating : ${movie.rating} ⭐'),
                 onTap: () {
-                  // print(movie.imdbUrl);
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (_) =>
                           MoviesDetailsWebview(url: movie.imdbUrl)));
