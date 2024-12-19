@@ -4,6 +4,7 @@ import 'package:dumyapp1/model/dynamicfield_model/dynamicfield_model.dart';
 import 'package:dumyapp1/model/userprofile_model/citizenship_model.dart';
 import 'package:dumyapp1/model/userprofile_model/gender_list_model.dart';
 import 'package:dumyapp1/model/userprofile_model/userprofile_class_model.dart';
+import 'package:flutter/material.dart';
 
 class UserProfile {
   bool? status;
@@ -22,7 +23,29 @@ class UserProfile {
     this.dynamicFieldList,
     this.genderList,
     this.citizenShipList,
-  });
+  }) {
+    _initializeTextControllers();
+  }
+
+  void _initializeTextControllers() {
+    if (dynamicFieldList != null) {
+      for (var field in dynamicFieldList!) {
+        final fieldValue = userProfileClass?.toJson()[field.fieldCode];
+
+        final fieldText = fieldValue != null ? fieldValue.toString() : "";
+
+        field.textControllers = TextEditingController(text: fieldText);
+      }
+    }
+  }
+
+  void disposeControllers() {
+    if (dynamicFieldList != null) {
+      for (var field in dynamicFieldList!) {
+        field.textControllers?.dispose();
+      }
+    }
+  }
 
   factory UserProfile.fromRawJson(String str) =>
       UserProfile.fromJson(json.decode(str));

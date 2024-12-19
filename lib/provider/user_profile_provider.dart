@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:dumyapp1/model/userprofile_model/userprofile_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,7 +11,7 @@ class UserProfileProvider extends ChangeNotifier {
   String? errorMessage;
 
   UserProfileProvider() {
-    loadFormData(); // Call the function when the provider is created.
+    loadFormData();
   }
 
   Future<void> loadFormData() async {
@@ -38,5 +37,11 @@ class UserProfileProvider extends ChangeNotifier {
       errorMessage = "Error: $e";
     }
     notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    userProfile?.disposeControllers();
+    super.dispose();
   }
 }

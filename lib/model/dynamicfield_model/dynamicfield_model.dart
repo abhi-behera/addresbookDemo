@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dumyapp1/model/dynamicfield_model/enum_values_model.dart';
+import 'package:flutter/material.dart';
 
 class DynamicFieldList {
   String? fieldCode;
@@ -16,7 +17,7 @@ class DynamicFieldList {
   FormCode? formCode;
   String? componentId;
   String? fieldType;
-  String? textControllers;
+  TextEditingController? textControllers;
 
   DynamicFieldList({
     this.fieldCode,

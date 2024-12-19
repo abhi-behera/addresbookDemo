@@ -13,16 +13,9 @@ class USerProfile extends StatefulWidget {
 }
 
 class _USerProfileState extends State<USerProfile> {
-  final Map<String, TextEditingController> textControllers = {};
   final Map<String, String> dropdownValues = {};
   List<String> radioOptionList = ["Yes", "No"];
   String selectedOption = "Yes";
-
-  @override
-  void dispose() {
-    textControllers.forEach((_, controller) => controller.dispose());
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,16 +65,14 @@ class _USerProfileState extends State<USerProfile> {
     switch (field.fieldType) {
       case UserProfileFormUtill.userProfileFormTextBox:
         {
-          // textControllers[field.fieldCode ?? ""] = TextEditingController(
-          //     text: provider.userProfile?.userProfileClass?.toJson().[field.fieldCode] ?? "");
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
-              controller: textControllers[field.fieldCode],
+              controller: field.textControllers,
               decoration: InputDecoration(
                 labelText: field.fieldTitle,
                 suffixIcon: IconButton(
-                  onPressed: textControllers[field.fieldCode]?.clear,
+                  onPressed: field.textControllers?.clear,
                   icon: const Icon(Icons.clear),
                 ),
                 border: const OutlineInputBorder(),
@@ -91,14 +82,13 @@ class _USerProfileState extends State<USerProfile> {
         }
       case UserProfileFormUtill.userProfileFormCalender:
         {
-          textControllers[field.fieldCode ?? ""] =
+          field.textControllers =
               TextEditingController(text: provider.formattedDate);
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
-              enabled:
-                  (textControllers[field.fieldCode]?.text != "") ? false : true,
-              controller: textControllers[field.fieldCode],
+              enabled: (field.textControllers?.text != "") ? false : true,
+              controller: field.textControllers,
               decoration: InputDecoration(
                 labelText: field.fieldTitle,
                 border: const OutlineInputBorder(),
@@ -146,7 +136,7 @@ class _USerProfileState extends State<USerProfile> {
         }
       case UserProfileFormUtill.userProfileFormEmail:
         {
-          textControllers[field.fieldCode ?? ""] = TextEditingController(
+          field.textControllers = TextEditingController(
             text: (field.fieldCode == 'SecondaryEmail')
                 ? provider.userProfile?.userProfileClass
                         ?.toJson()[field.fieldCode] ??
@@ -158,13 +148,12 @@ class _USerProfileState extends State<USerProfile> {
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
-              enabled:
-                  (textControllers[field.fieldCode]?.text != "") ? false : true,
-              controller: textControllers[field.fieldCode],
+              enabled: (field.textControllers?.text != "") ? false : true,
+              controller: field.textControllers,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 suffixIcon: IconButton(
-                  onPressed: textControllers[field.fieldCode]?.clear,
+                  onPressed: field.textControllers?.clear,
                   icon: const Icon(Icons.clear),
                 ),
                 labelText: field.fieldTitle,
