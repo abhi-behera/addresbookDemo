@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:dumyapp1/model/userprofile_model/userprofile_model.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -12,6 +13,40 @@ class UserProfileProvider extends ChangeNotifier {
 
   UserProfileProvider() {
     loadFormData();
+  }
+
+  Future<void> saveUserData(UserProfile userProfile) async {
+    try {
+      Map<String, dynamic> userData = {};
+
+      for (var field in userProfile.dynamicFieldList!) {
+        userData[field.fieldCode ?? ""] = field.textControllers?.text ?? "";
+      }
+      String jsonData = jsonEncode(userData);
+
+      final directory = await getApplicationDocumentsDirectory();
+
+      final submissionFolder = Directory('${directory.path}/json_submission');
+      if (!await submissionFolder.exists()) {
+        await submissionFolder.create();
+      }
+
+      List<FileSystemEntity> files = submissionFolder.listSync();
+      int submissionCount = files.length + 1;
+
+      File submissionFile =
+          File('${submissionFolder.path}/submission$submissionCount.json');
+
+      await submissionFile.writeAsString(jsonData);
+
+      if (kDebugMode) {
+        print("Data saved to: ${submissionFile.path}");
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print("Error saving data: $e");
+      }
+    }
   }
 
   Future<void> loadFormData() async {

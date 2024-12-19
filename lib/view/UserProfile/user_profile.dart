@@ -43,7 +43,10 @@ class _USerProfileState extends State<USerProfile> {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: appBarColor,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            userProfileProvider
+                                .saveUserData(userProfileProvider.userProfile!);
+                          },
                           child: const Text("SAVE"),
                         ),
                       );
