@@ -1,9 +1,10 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:dumyapp1/model/userprofile_model/userprofile_model.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:path_provider/path_provider.dart';
 
 class UserProfileProvider extends ChangeNotifier {
   UserProfile? userProfile;
