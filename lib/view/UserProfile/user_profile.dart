@@ -13,10 +13,6 @@ class USerProfile extends StatefulWidget {
 }
 
 class _USerProfileState extends State<USerProfile> {
-  final Map<String, String> dropdownValues = {};
-  List<String> radioOptionList = ["Yes", "No"];
-  String selectedOption = "Yes";
-
   @override
   Widget build(BuildContext context) {
     final userProfileProvider =
@@ -98,7 +94,7 @@ class _USerProfileState extends State<USerProfile> {
         }
       case UserProfileFormUtill.userProfileFormDropDown:
         {
-          dropdownValues[field.fieldCode ?? ""] = provider
+          provider.dropdownValues[field.fieldCode ?? ""] = provider
                   .userProfile?.userProfileClass
                   ?.toJson()[field.fieldCode] ??
               "";
@@ -111,7 +107,7 @@ class _USerProfileState extends State<USerProfile> {
                       .toString(),
               onChanged: (newValue) {
                 setState(() {
-                  dropdownValues[field.fieldCode ?? ""] = newValue!;
+                  provider.dropdownValues[field.fieldCode ?? ""] = newValue!;
                 });
               },
               items: (field.fieldCode.toString() == "Gender")
@@ -180,15 +176,17 @@ class _USerProfileState extends State<USerProfile> {
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
-              ...radioOptionList.map<Widget>((option) {
+              ...provider.radioOptionList.map<Widget>((option) {
                 return RadioListTile(
                   title: Text(option),
                   value: option,
-                  groupValue: selectedOption,
+                  groupValue: (provider
+                          .userProfile!.userProfileClass!.isPermanentResident!)
+                      ? provider.selectedOption = "Yes"
+                      : provider.selectedOption = "No",
                   onChanged: (value) {
-                    setState(() {
-                      selectedOption = value!;
-                    });
+                    provider.selectRadioButton();
+                    provider.selectedOption = value!;
                   },
                 );
               }).toList(),
