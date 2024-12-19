@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:io';
 import 'package:dumyapp1/model/userprofile_model/userprofile_model.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
@@ -22,40 +22,28 @@ class UserProfileProvider extends ChangeNotifier {
 
   Future<void> saveUserData(UserProfile userProfile) async {
     try {
-      // Collect data from the text fields and other inputs
       Map<String, dynamic> userData = {};
 
       for (var field in userProfile.dynamicFieldList!) {
         userData[field.fieldCode ?? ""] = field.textControllers?.text ?? "";
       }
-
-      // Add additional user inputs like radio buttons
-      // userData["selectedOption"] = userProfile.selectedOption; // Radio button value
-
-      // Convert the data to JSON
       String jsonData = jsonEncode(userData);
 
-      // Get the app's document directory
       final directory = await getApplicationDocumentsDirectory();
 
-      // Ensure the jsonsubmission folder exists
-      final submissionFolder = Directory('${directory.path}/jsonsubmission');
+      final submissionFolder = Directory('${directory.path}/json_submission');
       if (!await submissionFolder.exists()) {
         await submissionFolder.create();
       }
 
-      // Count existing files in the folder for naming
       List<FileSystemEntity> files = submissionFolder.listSync();
       int submissionCount = files.length + 1;
 
-      // Create a new file
       File submissionFile =
           File('${submissionFolder.path}/submission$submissionCount.json');
 
-      // Write JSON data to the file
       await submissionFile.writeAsString(jsonData);
 
-      // Show success message
       if (kDebugMode) {
         print("Data saved to: ${submissionFile.path}");
       }
