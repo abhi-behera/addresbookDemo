@@ -36,7 +36,6 @@ class _HomePageState extends State<HomePage> {
                 final menuItem = items.menuItemList?[index];
                 return GestureDetector(
                   onTap: () {
-                    debugPrint("menu route clicked: ${menuItem?.fieldRoute}");
                     switch (menuItem?.fieldRoute) {
                       case MenuUtill.singleEntry:
                         Navigator.push(
@@ -67,12 +66,12 @@ class _HomePageState extends State<HomePage> {
                         );
                         break;
                       default:
-                        debugPrint(
-                            "Encountered a invalid menu item \nPlease added the route to ${menuItem?.fieldRoute}");
+                        // debugPrint(
+                        //     "Encountered a invalid menu item \nPlease added the route to ${menuItem?.fieldRoute}");
                         break;
                     }
                   },
-                  child: newMethod(menuItem),
+                  child: menuItemsCard(menuItem),
                 );
               },
             ),
@@ -82,9 +81,12 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Card newMethod(MenuItem? menuItem) {
+  Card menuItemsCard(MenuItem? menuItem) {
     return Card(
-      elevation: 5,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      elevation: 6,
       child: Center(
         child: Column(
           children: [

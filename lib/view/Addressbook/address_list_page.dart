@@ -150,6 +150,10 @@ class CardTile extends StatelessWidget {
             style: const TextStyle(color: Colors.black, fontSize: 14),
           ),
         ),
+        onTap: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (_) => AddressFormPage()));
+        },
       ),
     );
   }

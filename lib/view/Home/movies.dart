@@ -23,18 +23,32 @@ class MoviesPage extends StatelessWidget {
             itemCount: movieProvider.movies.length,
             itemBuilder: (context, index) {
               final MoviesModel movie = movieProvider.movies[index];
-              return ListTile(
-                leading: Padding(
-                  padding: const EdgeInsets.only(top: 10, left: 6),
-                  child: Text(movie.id.toString()),
+              return Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
                 ),
-                title: Text(movie.movieName!),
-                subtitle: Text('Rating : ${movie.rating} ⭐'),
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (_) =>
-                          MoviesDetailsWebview(url: movie.imdbUrl)));
-                },
+                color: Colors.white,
+                margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+                elevation: 5,
+                child: ListTile(
+                  leading: Padding(
+                    padding: const EdgeInsets.only(top: 17, left: 6),
+                    child: Text(movie.id.toString()),
+                  ),
+                  title: Padding(
+                    padding: const EdgeInsets.only(top: 28),
+                    child: Text(movie.movieName!),
+                  ),
+                  subtitle: Padding(
+                    padding: const EdgeInsets.only(bottom: 20, top: 10),
+                    child: Text('Rating : ${movie.rating} ⭐'),
+                  ),
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) =>
+                            MoviesDetailsWebview(url: movie.imdbUrl)));
+                  },
+                ),
               );
             },
           );
