@@ -84,8 +84,9 @@ class NavbarScreenState extends State<NavbarScreen> {
             color: textColor,
           ),
           ListTile(
-            leading: const Icon(
-              Icons.home_max_outlined,
+            leading: const ImageIcon(
+              AssetImage(
+                  "assets/menu_icons/address-book-hand-drawn-outline.png"),
               color: Colors.white,
             ),
             title: const Text('Address',
@@ -114,8 +115,8 @@ class NavbarScreenState extends State<NavbarScreen> {
             },
           ),
           ListTile(
-            leading: const Icon(
-              Icons.person_2_rounded,
+            leading: const ImageIcon(
+              AssetImage("assets/menu_icons/user.png"),
               color: Colors.white,
             ),
             title: const Text('User Profile',
@@ -136,18 +137,24 @@ class NavbarScreenState extends State<NavbarScreen> {
     return BottomNavigationBar(
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(
-            Icons.person,
-            color: Color.fromRGBO(04, 52, 100, 1),
+          icon: ImageIcon(
+            AssetImage("assets/menu_icons/app.png"),
+            color: Color(0xFF3A5A98),
           ),
           label: 'Menu',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.home, color: Color.fromRGBO(04, 52, 100, 1)),
+          icon: ImageIcon(
+            AssetImage("assets/menu_icons/home.png"),
+            color: Color(0xFF3A5A98),
+          ),
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.settings, color: Color.fromRGBO(04, 52, 100, 1)),
+          icon: ImageIcon(
+            AssetImage("assets/menu_icons/user.png"),
+            color: Color(0xFF3A5A98),
+          ),
           label: 'Profile',
         ),
       ],

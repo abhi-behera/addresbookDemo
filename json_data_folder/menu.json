@@ -1,0 +1,39 @@
+{
+    "menu":[
+        {
+            "FiedId": "1",
+            "FieldName": "Single Entry",
+            "FieldIcon": "chat.png",
+            "FieldRoute": "Single_Entry",
+            "IsMandate": true
+        },
+        {
+            "FiedId": "2",
+            "FieldName": "Adhoc Forum",
+            "FieldIcon": "social-communication.png",
+            "FieldRoute": "Single_Entry",
+            "IsMandate": false
+        },
+        {
+            "FiedId": "3",
+            "FieldName": "Movies",
+            "FieldIcon": "watching-a-movie.png",
+            "FieldRoute": "Movies_list",
+            "IsMandate": true
+        },
+        {
+            "FiedId": "4",
+            "FieldName": "User Profile",
+            "FieldIcon": "social-communication.png",
+            "FieldRoute": "User_Profile",
+            "IsMandate": true
+        },
+        {
+            "FiedId": "5",
+            "FieldName": "Address Book",
+            "FieldIcon": "address-book-hand-drawn-outline.png",
+            "FieldRoute": "AddressBook",
+            "IsMandate": true
+        }
+    ]
+}

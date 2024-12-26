@@ -17,8 +17,8 @@ class UserProfileProvider extends ChangeNotifier {
   final Map<String, String> dropdownValues = {};
 
   UserProfileProvider() {
-    callIsolates();
-    // loadFormData();
+    // callIsolates();
+    loadFormData();
   }
 
   Future<void> saveUserData(UserProfile userProfile) async {
@@ -56,81 +56,81 @@ class UserProfileProvider extends ChangeNotifier {
   }
 
 //  with isolates
-  Future<void> callIsolates() async {
-    debugPrint("Isolates called");
+  // Future<void> callIsolates() async {
+  //   debugPrint("Isolates called");
 
-    final receivePort = ReceivePort();
+  //   final receivePort = ReceivePort();
 
-    try {
-      final String jsonString =
-          await rootBundle.loadString('json_data_folder/userProfile.json');
-
-      await Isolate.spawn(loadFormData, [receivePort.sendPort, jsonString]);
-
-      receivePort.listen((message) {
-        if (message is Map<String, dynamic>) {
-          userProfile = UserProfile.fromJson(message);
-
-          if (userProfile?.userProfileClass?.dateOfBirth != null) {
-            String inputDate = userProfile!.userProfileClass!.dateOfBirth!;
-            DateTime parsedDate =
-                DateFormat("MM/dd/yyyy hh:mm:ss a").parse(inputDate);
-            formattedDate = DateFormat("MMM-dd-yyyy").format(parsedDate);
-          }
-          isLoading = false;
-          notifyListeners();
-        } else if (message is String) {
-          errorMessage = message;
-          isLoading = false;
-          notifyListeners();
-        }
-      });
-    } catch (e) {
-      errorMessage = "Error starting isolate: $e";
-      isLoading = false;
-      notifyListeners();
-    }
-  }
-
-  static Future<void> loadFormData(List<dynamic> params) async {
-    SendPort sendPort = params[0];
-    String jsonString = params[1];
-
-    try {
-      final Map<String, dynamic> jsonData = jsonDecode(jsonString);
-
-      sendPort.send(jsonData);
-    } catch (e) {
-      debugPrint(e.toString());
-      sendPort.send("Error: $e");
-    }
-  }
-
-// without isolates
-  // Future<void> loadFormData() async {
   //   try {
-  //     isLoading = true;
-  //     notifyListeners();
-
   //     final String jsonString =
   //         await rootBundle.loadString('json_data_folder/userProfile.json');
-  //     final Map<String, dynamic> jsonData = jsonDecode(jsonString);
-  //     userProfile = UserProfile.fromJson(jsonData);
 
-  //     if (userProfile?.userProfileClass?.dateOfBirth != null) {
-  //       String inputDate = userProfile!.userProfileClass!.dateOfBirth!;
-  //       DateTime parsedDate =
-  //           DateFormat("MM/dd/yyyy hh:mm:ss a").parse(inputDate);
-  //       formattedDate = DateFormat("MMM-dd-yyyy").format(parsedDate);
-  //     }
+  //     await Isolate.spawn(loadFormData, [receivePort.sendPort, jsonString]);
 
-  //     isLoading = false;
+  //     receivePort.listen((message) {
+  //       if (message is Map<String, dynamic>) {
+  //         userProfile = UserProfile.fromJson(message);
+
+  //         if (userProfile?.userProfileClass?.dateOfBirth != null) {
+  //           String inputDate = userProfile!.userProfileClass!.dateOfBirth!;
+  //           DateTime parsedDate =
+  //               DateFormat("MM/dd/yyyy hh:mm:ss a").parse(inputDate);
+  //           formattedDate = DateFormat("MMM-dd-yyyy").format(parsedDate);
+  //         }
+  //         isLoading = false;
+  //         notifyListeners();
+  //       } else if (message is String) {
+  //         errorMessage = message;
+  //         isLoading = false;
+  //         notifyListeners();
+  //       }
+  //     });
   //   } catch (e) {
+  //     errorMessage = "Error starting isolate: $e";
   //     isLoading = false;
-  //     errorMessage = "Error: $e";
+  //     notifyListeners();
   //   }
-  //   notifyListeners();
   // }
+
+  // static Future<void> loadFormData(List<dynamic> params) async {
+  //   SendPort sendPort = params[0];
+  //   String jsonString = params[1];
+
+  //   try {
+  //     final Map<String, dynamic> jsonData = jsonDecode(jsonString);
+
+  //     sendPort.send(jsonData);
+  //   } catch (e) {
+  //     debugPrint(e.toString());
+  //     sendPort.send("Error: $e");
+  //   }
+  // }
+
+// without isolates
+  Future<void> loadFormData() async {
+    try {
+      isLoading = true;
+      notifyListeners();
+
+      final String jsonString =
+          await rootBundle.loadString('json_data_folder/userProfile.json');
+      final Map<String, dynamic> jsonData = jsonDecode(jsonString);
+      userProfile = UserProfile.fromJson(jsonData);
+
+      if (userProfile?.userProfileClass?.dateOfBirth != null) {
+        String inputDate = userProfile!.userProfileClass!.dateOfBirth!;
+        DateTime parsedDate =
+            DateFormat("MM/dd/yyyy hh:mm:ss a").parse(inputDate);
+        formattedDate = DateFormat("MMM-dd-yyyy").format(parsedDate);
+      }
+
+      isLoading = false;
+    } catch (e) {
+      isLoading = false;
+      errorMessage = "Error: $e";
+    }
+    notifyListeners();
+  }
 
   void selectRadioButton() {
     (userProfile!.userProfileClass!.isPermanentResident!)

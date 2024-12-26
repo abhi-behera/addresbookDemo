@@ -108,14 +108,14 @@ class CardTile extends StatelessWidget {
                     key: ValueKey(tileIndex),
                     height: 20,
                     width: 40,
-                    child: Image.asset('assets/prefered.png'),
+                    child: Image.asset('assets/address_book/prefered.png'),
                   )
                 : const Spacer(),
             SizedBox(
                 height: 40,
                 width: 40,
                 child: PopupMenuButton<String>(
-                  icon: Image.asset('assets/threeDots.png'),
+                  icon: Image.asset('assets/address_book/threeDots.png'),
                   onSelected: (value) {
                     _handleMenuAction(context, value, tileIndex);
                   },

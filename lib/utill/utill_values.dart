@@ -19,3 +19,10 @@ class UserProfileFormUtill {
   static const String userProfileFormRadioButton = "RadioButton";
   static const String userProfileFormEmail = "Email";
 }
+
+class MenuUtill {
+  static const String singleEntry = "Single_Entry";
+  static const String moviesList = "Movies_list";
+  static const String userProfile = "User_Profile";
+  static const String addressBook = "AddressBook";
+}
