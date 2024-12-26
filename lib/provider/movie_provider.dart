@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:isolate';
+// import 'dart:isolate';
 
 import 'package:dumyapp1/api_endpoints/api_Endpoints.dart';
 import 'package:dumyapp1/model/movies_model/movies_model.dart';

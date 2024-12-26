@@ -1,4 +1,3 @@
-import 'package:dumyapp1/model/addressbook/address_model.dart';
 import 'package:dumyapp1/provider/address_provider_page.dart';
 import 'package:dumyapp1/utill/utill_values.dart';
 import 'package:dumyapp1/view/CustomWidgets/custom_widgets.dart';
@@ -27,8 +26,7 @@ class AddressListPage extends StatelessWidget {
           return ListView.builder(
             itemCount: addresses.length,
             itemBuilder: (context, index) {
-              final address = addresses[index];
-              return CardTile(address: address, tileIndex: index);
+              return CardTile(address: addressProvider, tileIndex: index);
             },
           );
         },
@@ -45,13 +43,12 @@ class AddressListPage extends StatelessWidget {
   }
 }
 
-void _handleMenuAction(BuildContext context, String value, int index) {
-  final addressProvider = Provider.of<AddressProvider>(context, listen: false);
-
+void _handleMenuAction(BuildContext context, String value, int index,
+    AddressProvider addProvider) {
   switch (value) {
     case 'Preference':
       // For Handling "Preference" part
-      addressProvider.setPreferredIndex(index);
+      addProvider.setPreferredIndex(index);
       break;
     case 'Edit':
       // For Handling "Edit" part
@@ -75,12 +72,11 @@ class CardTile extends StatelessWidget {
     required this.address,
     required this.tileIndex,
   });
-  final Address address;
+  final AddressProvider address;
   final int tileIndex;
   @override
   Widget build(BuildContext context) {
-    final addressProvider = Provider.of<AddressProvider>(context);
-    final isPreferred = addressProvider.preferredIndex == tileIndex;
+    final isPreferred = address.preferredIndex == tileIndex;
 
     return Card(
       shape: RoundedRectangleBorder(
@@ -98,7 +94,7 @@ class CardTile extends StatelessWidget {
                   borderRadius: BorderRadius.circular(6),
                   color: const Color.fromRGBO(104, 134, 162, 1)),
               child: Text(
-                address.addressType!,
+                address.addresses[tileIndex].addressType!,
                 style: const TextStyle(color: Colors.white),
               ),
             ),
@@ -117,7 +113,7 @@ class CardTile extends StatelessWidget {
                 child: PopupMenuButton<String>(
                   icon: Image.asset('assets/address_book/threeDots.png'),
                   onSelected: (value) {
-                    _handleMenuAction(context, value, tileIndex);
+                    _handleMenuAction(context, value, tileIndex, address);
                   },
                   itemBuilder: (context) => (isPreferred)
                       ? [
@@ -150,7 +146,7 @@ class CardTile extends StatelessWidget {
         subtitle: Padding(
           padding: const EdgeInsets.only(bottom: 12, top: 6),
           child: Text(
-            '${address.address1} , ${address.address2}, ${address.city}',
+            '${address.addresses[tileIndex].address1} , ${address.addresses[tileIndex].address2}, ${address.addresses[tileIndex].city}',
             style: const TextStyle(color: Colors.black, fontSize: 14),
           ),
         ),
