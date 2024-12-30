@@ -33,46 +33,53 @@ class _HomePageState extends State<HomePage> {
               ),
               itemCount: items.menuItemList?.length,
               itemBuilder: (context, index) {
-                final menuItem = items.menuItemList?[index];
-                return GestureDetector(
-                  onTap: () {
-                    switch (menuItem?.fieldRoute) {
-                      case MenuUtill.singleEntry:
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const SingleForumPage()),
-                        );
-                        break;
-                      case MenuUtill.moviesList:
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const MoviesPage()),
-                        );
-                        break;
-                      case MenuUtill.userProfile:
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const USerProfile()),
-                        );
-                        break;
-                      case MenuUtill.addressBook:
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const AddressListPage()),
-                        );
-                        break;
-                      default:
-                        // debugPrint(
-                        //     "Encountered a invalid menu item \nPlease added the route to ${menuItem?.fieldRoute}");
-                        break;
-                    }
-                  },
-                  child: menuItemsCard(menuItem),
-                );
+                if (items.isLoading) {
+                  const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else {
+                  final menuItem = items.menuItemList?[index];
+                  return GestureDetector(
+                    onTap: () {
+                      switch (menuItem?.fieldRoute) {
+                        case MenuUtill.singleEntry:
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const SingleForumPage()),
+                          );
+                          break;
+                        case MenuUtill.moviesList:
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const MoviesPage()),
+                          );
+                          break;
+                        case MenuUtill.userProfile:
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const USerProfile()),
+                          );
+                          break;
+                        case MenuUtill.addressBook:
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const AddressListPage()),
+                          );
+                          break;
+                        default:
+                          debugPrint(
+                              "Encountered a invalid menu item \nPlease added the route to ${menuItem?.fieldRoute}");
+                          break;
+                      }
+                    },
+                    child: menuItemsCard(menuItem),
+                  );
+                }
+                return null;
               },
             ),
           );

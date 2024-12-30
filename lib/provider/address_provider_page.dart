@@ -26,4 +26,9 @@ class AddressProvider with ChangeNotifier {
     _preferredIndex = index;
     notifyListeners();
   }
+
+  void updateAddress(int index, Address updatedAddress) {
+    _addresses[index] = updatedAddress;
+    notifyListeners();
+  }
 }

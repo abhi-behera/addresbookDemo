@@ -52,6 +52,12 @@ void _handleMenuAction(BuildContext context, String value, int index,
       break;
     case 'Edit':
       // For Handling "Edit" part
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (_) => AddressFormPage(
+          editIndex: index,
+          addressToEdit: addProvider.addresses[index],
+        ),
+      ));
       if (kDebugMode) {
         print('Edit selected for item $index');
       }
@@ -151,8 +157,12 @@ class CardTile extends StatelessWidget {
           ),
         ),
         onTap: () {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (_) => AddressFormPage()));
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (_) => AddressFormPage(
+              editIndex: tileIndex,
+              addressToEdit: address.addresses[tileIndex],
+            ),
+          ));
         },
       ),
     );

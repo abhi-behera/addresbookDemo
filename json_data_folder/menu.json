@@ -24,7 +24,7 @@
         {
             "FiedId": "4",
             "FieldName": "User Profile",
-            "FieldIcon": "social-communication.png",
+            "FieldIcon": "user.png",
             "FieldRoute": "User_Profile",
             "IsMandate": true
         },

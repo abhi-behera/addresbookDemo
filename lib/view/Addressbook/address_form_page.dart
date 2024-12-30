@@ -1,3 +1,4 @@
+import 'package:dumyapp1/model/addressbook/address_model.dart';
 import 'package:dumyapp1/provider/address_provider_page.dart';
 import 'package:dumyapp1/utill/utill_values.dart';
 import 'package:dumyapp1/view/CustomWidgets/custom_widgets.dart';
@@ -7,8 +8,10 @@ import 'package:provider/provider.dart';
 
 class AddressFormPage extends StatefulWidget {
   final GlobalKey<FormState> _formKey1 = GlobalKey();
+  final int? editIndex;
+  final Address? addressToEdit;
 
-  AddressFormPage({super.key});
+  AddressFormPage({this.editIndex, this.addressToEdit, super.key});
 
   @override
   AddressFormPageState createState() => AddressFormPageState();
@@ -32,19 +35,26 @@ class AddressFormPageState extends State<AddressFormPage> {
   };
 
   @override
+  void initState() {
+    super.initState();
+    if (widget.addressToEdit != null) {
+      _addrrss1Controller.text = widget.addressToEdit!.address1!;
+      _addrrss2Controller.text = widget.addressToEdit!.address2!;
+      _cityController.text = widget.addressToEdit!.city!;
+      _zipController.text = widget.addressToEdit!.zip!;
+      _selectedAddressType = widget.addressToEdit!.addressType!;
+      _selectedCountry = widget.addressToEdit!.country!;
+      _selectedState = widget.addressToEdit!.state!;
+    }
+  }
+
+  @override
   void dispose() {
     _addrrss1Controller.dispose();
     _addrrss2Controller.dispose();
     _cityController.dispose();
     _zipController.dispose();
     super.dispose();
-  }
-
-  clearText(TextEditingController controler) {
-    if (kDebugMode) {
-      print("clear text called ");
-    }
-    controler.clear();
   }
 
   @override
@@ -55,16 +65,29 @@ class AddressFormPageState extends State<AddressFormPage> {
       if (widget._formKey1.currentState!.validate()) {
         widget._formKey1.currentState!.save();
         if (_addrrss1Controller.text.isNotEmpty) {
-          addressProvider.addAddress(
+          if (widget.editIndex != null) {
+            addressProvider.updateAddress(
+              widget.editIndex!,
+              Address(
+                address1: _addrrss1Controller.text,
+                address2: _addrrss2Controller.text,
+                addressType: _selectedAddressType,
+                country: _selectedCountry,
+                state: _selectedState,
+                city: _cityController.text,
+                zip: _zipController.text,
+              ),
+            );
+          } else {
+            addressProvider.addAddress(
               _addrrss1Controller.text,
               _addrrss2Controller.text,
               _selectedAddressType,
               _selectedCountry,
               _selectedState,
               _cityController.text,
-              _zipController.text);
-          if (kDebugMode) {
-            print("address: ${addressProvider.addresses}");
+              _zipController.text,
+            );
           }
           Navigator.pop(context);
         }
