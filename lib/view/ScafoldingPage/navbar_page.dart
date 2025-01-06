@@ -83,6 +83,9 @@ class NavbarScreenState extends State<NavbarScreen> {
           Divider(
             color: textColor,
           ),
+          const SizedBox(
+            height: 20,
+          ),
           ListTile(
             leading: const ImageIcon(
               AssetImage(

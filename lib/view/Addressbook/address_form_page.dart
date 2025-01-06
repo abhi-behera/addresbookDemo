@@ -2,7 +2,6 @@ import 'package:dumyapp1/model/addressbook/address_model.dart';
 import 'package:dumyapp1/provider/address_provider_page.dart';
 import 'package:dumyapp1/utill/utill_values.dart';
 import 'package:dumyapp1/view/CustomWidgets/custom_widgets.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -165,12 +164,6 @@ class AddressFormPageState extends State<AddressFormPage> {
                         labelText: 'Address Line 2',
                         border: const OutlineInputBorder(),
                       ),
-                      // validator: (value) {
-                      //   if (value == null || value.isEmpty) {
-                      //     return 'Please enter Address line 2';
-                      //   }
-                      //   return null;
-                      // },
                     ),
                   ),
                   // dropdown
@@ -234,15 +227,6 @@ class AddressFormPageState extends State<AddressFormPage> {
                         labelText: 'City',
                         border: const OutlineInputBorder(),
                       ),
-                      // validator: (value) {
-                      //   if (value == null || value.isEmpty) {
-                      //     return 'Please enter your city';
-                      //   }
-                      //   if (!RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                      //     return 'Please enter a valid city Name(a-z or A-Z)';
-                      //   }
-                      //   return null;
-                      // },
                     ),
                   ),
                   Container(
@@ -261,17 +245,6 @@ class AddressFormPageState extends State<AddressFormPage> {
                         labelText: 'Zip Code',
                         border: const OutlineInputBorder(),
                       ),
-                      // validator: (value) {
-                      //   // if (value == null || value.isEmpty) {
-                      //   //   return 'Please enter your pin code';
-                      //   // }
-                      //   if (value != null) {
-                      //     if (!RegExp(r'^[ 0-9]+$').hasMatch(value)) {
-                      //       return 'Please enter valid Zip code';
-                      //     }
-                      //   }
-                      //   return null;
-                      // },
                     ),
                   ),
                   const SizedBox(height: 16),

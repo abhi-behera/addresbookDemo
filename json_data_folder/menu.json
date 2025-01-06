@@ -1,6 +1,13 @@
 {
     "menu":[
         {
+            "FiedId": "5",
+            "FieldName": "Address Book",
+            "FieldIcon": "address-book-hand-drawn-outline.png",
+            "FieldRoute": "AddressBook",
+            "IsMandate": true
+        },
+        {
             "FiedId": "1",
             "FieldName": "Single Entry",
             "FieldIcon": "chat.png",
@@ -15,13 +22,6 @@
             "IsMandate": false
         },
         {
-            "FiedId": "3",
-            "FieldName": "Movies",
-            "FieldIcon": "watching-a-movie.png",
-            "FieldRoute": "Movies_list",
-            "IsMandate": true
-        },
-        {
             "FiedId": "4",
             "FieldName": "User Profile",
             "FieldIcon": "user.png",
@@ -29,10 +29,10 @@
             "IsMandate": true
         },
         {
-            "FiedId": "5",
-            "FieldName": "Address Book",
-            "FieldIcon": "address-book-hand-drawn-outline.png",
-            "FieldRoute": "AddressBook",
+            "FiedId": "3",
+            "FieldName": "Movies",
+            "FieldIcon": "watching-a-movie.png",
+            "FieldRoute": "Movies_list",
             "IsMandate": true
         }
     ]
