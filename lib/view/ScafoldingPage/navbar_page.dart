@@ -60,7 +60,7 @@ class NavbarScreenState extends State<NavbarScreen> {
                       'https://media.licdn.com/dms/image/v2/C5603AQG4etc2xCWQ3Q/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1611021380076?e=1739404800&v=beta&t=21LRZZ1mYJYcfJnLh2sk_776leUaUE4j0-ZQd2kfhTQ'),
                 ),
               ),
-              const SizedBox(width: 20),
+              const SizedBox(width: 7),
               const Column(
                 children: [
                   SizedBox(

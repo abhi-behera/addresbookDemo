@@ -98,7 +98,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: [
             Container(
-                padding: const EdgeInsets.only(top: 30, bottom: 10),
+                padding: const EdgeInsets.only(top: 20, bottom: 10),
                 width: 40,
                 child: Image.asset('assets/menu_icons/${menuItem?.fieldIcon}')),
             FittedBox(
