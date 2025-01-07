@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar('Home Page'),
+      appBar: customAppBar('Home'),
       body: Consumer<MenuItemProvider>(
         builder: (context, items, child) {
           return Container(

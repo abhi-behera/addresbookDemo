@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-Color appBarColor = const Color.fromRGBO(04, 52, 100, 1);
+Color appBarColor = const Color.fromRGBO(
+    58, 77, 137, 1); //const Color.fromRGBO(04, 52, 100, 1);
 Color textColor = Colors.white;
 bool preference = false;
 
-//  Todo : add all static values here add use those var inside our app
+//  Todo : add all static values here and use this var inside our app
 class SingleFormUtill {
   static const String singleFormTextBox = "InputBox";
   static const String singleFormDropDown = "Dropdown";
