@@ -1,7 +1,7 @@
 import 'package:dumyapp1/model/movies_model/movies_model.dart';
 import 'package:dumyapp1/provider/movie_provider.dart';
 import 'package:dumyapp1/view/CustomWidgets/custom_widgets.dart';
-import 'package:dumyapp1/view/Home/movies_details_webview.dart';
+import 'package:dumyapp1/view/MovieList/movies_details_webview.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

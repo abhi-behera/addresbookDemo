@@ -2,8 +2,8 @@ import 'package:dumyapp1/model/menu_model.dart';
 import 'package:dumyapp1/provider/menu_item_provider.dart';
 import 'package:dumyapp1/utill/utill_values.dart';
 import 'package:dumyapp1/view/Addressbook/address_list_page.dart';
-import 'package:dumyapp1/view/Home/movies.dart';
 import 'package:dumyapp1/view/Home/single_forum.dart';
+import 'package:dumyapp1/view/MovieList/movies_1.dart';
 import 'package:dumyapp1/view/ScafoldingPage/drawer.dart';
 import 'package:dumyapp1/view/UserProfile/user_profile.dart';
 import 'package:flutter/material.dart';
@@ -23,13 +23,12 @@ class _HomePage3State extends State<HomePage3> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width * 0.6;
     return Scaffold(
-      key: _scaffoldKey, // Add the GlobalKey here
+      key: _scaffoldKey,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             leading: IconButton(
                 onPressed: () {
-                  debugPrint("menu pressed");
                   _scaffoldKey.currentState?.openDrawer();
                 },
                 icon: const Icon(
@@ -37,11 +36,11 @@ class _HomePage3State extends State<HomePage3> {
                   color: Colors.black54,
                 )),
             elevation: 0,
-            backgroundColor: Colors.white, // Transparent to let gradient show
+            backgroundColor: Color.fromARGB(255, 233, 233, 237),
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               title: const Text(
-                'Hello Welcome ',
+                'Hello Abhijit',
                 style: TextStyle(color: Colors.black54),
               ),
               background: Container(
@@ -49,12 +48,13 @@ class _HomePage3State extends State<HomePage3> {
                   gradient: LinearGradient(colors: [
                     Color.fromARGB(192, 89, 100, 199),
                     Color.fromARGB(192, 149, 172, 241),
-                    Color.fromARGB(192, 233, 236, 244),
+                    Color.fromARGB(192, 255, 255, 255),
                   ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
                 ),
+                child: Image.asset('assets/address_book/clg1.png'),
               ),
             ),
-            expandedHeight: 250,
+            expandedHeight: 150,
           ),
           SliverToBoxAdapter(
             child: Consumer<MenuItemProvider>(
@@ -92,7 +92,8 @@ class _HomePage3State extends State<HomePage3> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => const MoviesPage()),
+                                      builder: (context) =>
+                                          const MoviesPage1()),
                                 );
                                 break;
                               case MenuUtill.userProfile:

@@ -1,6 +1,6 @@
 import 'package:dumyapp1/utill/utill_values.dart';
 import 'package:dumyapp1/view/Addressbook/address_list_page.dart';
-import 'package:dumyapp1/view/Home/movies.dart';
+import 'package:dumyapp1/view/MovieList/movies.dart';
 import 'package:dumyapp1/view/UserProfile/user_profile.dart';
 import 'package:flutter/material.dart';
 

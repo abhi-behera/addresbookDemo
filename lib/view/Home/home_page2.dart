@@ -3,8 +3,9 @@ import 'package:dumyapp1/provider/menu_item_provider.dart';
 import 'package:dumyapp1/utill/utill_values.dart';
 import 'package:dumyapp1/view/Addressbook/address_list_page.dart';
 import 'package:dumyapp1/view/CustomWidgets/custom_widgets.dart';
-import 'package:dumyapp1/view/Home/movies.dart';
+import 'package:dumyapp1/view/MovieList/movies.dart';
 import 'package:dumyapp1/view/Home/single_forum.dart';
+import 'package:dumyapp1/view/MovieList/movies_2.dart';
 import 'package:dumyapp1/view/UserProfile/user_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +21,7 @@ class _HomePage2State extends State<HomePage2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: gradientAppBar('# 2 Home'),
+      appBar: gradientAppBar('Material Design'),
       body: Consumer<MenuItemProvider>(
         builder: (context, items, child) {
           return GridView.builder(
@@ -50,7 +51,7 @@ class _HomePage2State extends State<HomePage2> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const MoviesPage()),
+                              builder: (context) => const MoviesPage2()),
                         );
                         break;
                       case MenuUtill.userProfile:

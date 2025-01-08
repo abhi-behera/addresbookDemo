@@ -17,15 +17,13 @@ AppBar gradientAppBar(String title) {
   return AppBar(
     title: Text(
       title,
-      style: TextStyle(color: textColor),
+      style: const TextStyle(color: Colors.black),
     ),
     flexibleSpace: Container(
       decoration: const BoxDecoration(
           gradient: LinearGradient(colors: [
-        Color.fromARGB(192, 133, 158, 226),
-        Color.fromARGB(192, 118, 152, 247),
-        Color.fromARGB(192, 184, 201, 246),
-        Color.fromARGB(26, 153, 199, 241),
+        Color.fromARGB(192, 206, 217, 243),
+        Color.fromARGB(192, 222, 229, 248),
       ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
     ),
     centerTitle: true,
