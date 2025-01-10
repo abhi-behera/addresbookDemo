@@ -40,7 +40,7 @@ class _HomePage3State extends State<HomePage3> {
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               title: const Text(
-                'Hello Abhijit',
+                'XYZ INSTITUTE',
                 style: TextStyle(color: Colors.black54),
               ),
               background: Container(
@@ -51,7 +51,6 @@ class _HomePage3State extends State<HomePage3> {
                     Color.fromARGB(192, 255, 255, 255),
                   ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
                 ),
-                child: Image.asset('assets/address_book/clg1.png'),
               ),
             ),
             expandedHeight: 150,

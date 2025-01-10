@@ -8,7 +8,14 @@ AppBar customAppBar(String title) {
       style: TextStyle(color: textColor),
     ),
     centerTitle: true,
-    backgroundColor: appBarColor,
+       flexibleSpace: Container(
+      decoration: const BoxDecoration(
+          gradient: LinearGradient(colors: [
+        Color.fromRGBO(140, 183, 235, 1),
+        Color.fromARGB(192, 233, 236, 246),
+      ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+    ),
+    backgroundColor: const Color.fromRGBO(140, 183, 235, 1), //appBarColor,
     elevation: 10,
   );
 }
@@ -22,8 +29,8 @@ AppBar gradientAppBar(String title) {
     flexibleSpace: Container(
       decoration: const BoxDecoration(
           gradient: LinearGradient(colors: [
-        Color.fromARGB(192, 206, 217, 243),
-        Color.fromARGB(192, 222, 229, 248),
+        Color.fromRGBO(140, 183, 235, 1),
+        Color.fromARGB(192, 233, 236, 246),
       ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
     ),
     centerTitle: true,

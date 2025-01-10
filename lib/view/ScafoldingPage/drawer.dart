@@ -72,7 +72,7 @@ Drawer drawer(double screenWidth, BuildContext context) {
             Icons.video_collection,
             color: Colors.white,
           ),
-          title: const Text('My Movie List',
+          title: const Text('My Courses',
               style: TextStyle(
                 color: Colors.white,
               )),
