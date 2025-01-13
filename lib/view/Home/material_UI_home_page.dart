@@ -36,7 +36,7 @@ class _HomePage3State extends State<HomePage3> {
                   color: Colors.black54,
                 )),
             elevation: 0,
-            backgroundColor: Color.fromARGB(255, 233, 233, 237),
+            backgroundColor: const Color.fromARGB(255, 233, 233, 237),
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               title: const Text(

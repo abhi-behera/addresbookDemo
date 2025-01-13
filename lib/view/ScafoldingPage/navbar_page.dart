@@ -1,7 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:dumyapp1/utill/utill_values.dart';
-import 'package:dumyapp1/view/Home/category.dart';
-import 'package:dumyapp1/view/Home/home_page2.dart';
+import 'package:dumyapp1/view/Home/category_page.dart';
+import 'package:dumyapp1/view/Home/new_UI_home_page.dart';
 // import 'package:dumyapp1/view/Home/home_page3.dart';
 import 'package:dumyapp1/view/ScafoldingPage/drawer.dart';
 import 'package:dumyapp1/view/UserProfile/user_profile.dart';

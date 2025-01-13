@@ -89,24 +89,25 @@ class _DetailsPageState extends State<DetailsPage> {
                         IconButton(
                             onPressed: () {},
                             icon: Image.asset(
-                              'images/download.png',
-                              height: 17,
-                              color: Colors.black45,
-                            )),
-                        IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.bookmark_border, size: 23)),
-                        IconButton(
-                            onPressed: () {},
-                            icon: Image.asset(
                               'images/heart.png',
                               height: 20,
                             )),
                         IconButton(
                             onPressed: () {},
                             icon: Image.asset(
-                              'images/square.png',
-                              height: 17,
+                              'images/chat.png',
+                              height: 27,
+                            )),
+                        IconButton(
+                            onPressed: () {
+                              // Share.share(
+                              //   'Check out this image\nhttps://thumbs.dreamstime.com/b/surfboard-beach-holiday-sunset-sand-beach-hut-tropical-paradise-coastal-resort-surfboard-beach-holiday-sunset-sand-316451192.jpg',
+                              // );
+                            },
+                            icon: const Icon(
+                              Icons.share,
+                              size: 20,
+                              color: Colors.black87,
                             )),
                         IconButton(
                             onPressed: () {},
@@ -115,12 +116,15 @@ class _DetailsPageState extends State<DetailsPage> {
                               size: 25,
                             )),
                         IconButton(
-                            onPressed: () {
-                              // Share.share(
-                              //   'Check out this image\nhttps://thumbs.dreamstime.com/b/surfboard-beach-holiday-sunset-sand-beach-hut-tropical-paradise-coastal-resort-surfboard-beach-holiday-sunset-sand-316451192.jpg',
-                              // );
-                            },
-                            icon: const Icon(Icons.share, size: 20)),
+                            onPressed: () {},
+                            icon: Image.asset(
+                              'images/download.png',
+                              height: 17,
+                              color: Colors.black45,
+                            )),
+                        IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.bookmark_border, size: 23)),
                       ],
                     ),
                   ),

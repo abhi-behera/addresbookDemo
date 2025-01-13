@@ -17,7 +17,7 @@
         {
             "FiedId": "2",
             "FieldName": "Adhoc Form",
-            "FieldIcon": "social-communication.png",
+            "FieldIcon": "form.png",
             "FieldRoute": "Single_Entry",
             "IsMandate": false
         },

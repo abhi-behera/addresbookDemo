@@ -17,50 +17,57 @@ class MoviesPage1 extends StatelessWidget {
         child:
             Consumer<MovieProvider>(builder: (context, movieProvider, child) {
           if (movieProvider.movies.isEmpty) {
-            return const Center(child: CircularProgressIndicator());
-          }
-
-          return ListView.builder(
-            itemCount: movieProvider.movies.length,
-            itemBuilder: (context, index) {
-              final MoviesModel movie = movieProvider.movies[index];
-              return Container(
-                margin: const EdgeInsets.symmetric(horizontal: 10),
-                child: Card(
-                  child: ListTile(
-                    leading: Container(
-                      margin: const EdgeInsets.only(top: 20, right: 20),
-                      width: 45,
-                      height: 50,
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          color: appBarColor),
-                      child: Center(
-                        child: Text(
-                          movie.id.toString(),
-                          style: const TextStyle(color: Colors.white),
+            return const Center(
+              child: Text(
+                'No movies found',
+                style: TextStyle(fontSize: 20),
+              ),
+            );
+          } else if (movieProvider.movies.isNotEmpty) {
+            return ListView.builder(
+              itemCount: movieProvider.movies.length,
+              itemBuilder: (context, index) {
+                final MoviesModel movie = movieProvider.movies[index];
+                return Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Card(
+                    child: ListTile(
+                      leading: Container(
+                        margin: const EdgeInsets.only(top: 20, right: 20),
+                        width: 45,
+                        height: 50,
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            color: appBarColor),
+                        child: Center(
+                          child: Text(
+                            movie.id.toString(),
+                            style: const TextStyle(color: Colors.white),
+                          ),
                         ),
                       ),
+                      title: Padding(
+                        padding: const EdgeInsets.only(top: 28),
+                        child: Text(movie.movieName!),
+                      ),
+                      subtitle: Padding(
+                        padding: const EdgeInsets.only(bottom: 20, top: 10),
+                        child: Text('Rating : ${movie.rating} ⭐'),
+                      ),
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (_) =>
+                                MoviesDetailsWebview(url: movie.imdbUrl)));
+                      },
                     ),
-                    title: Padding(
-                      padding: const EdgeInsets.only(top: 28),
-                      child: Text(movie.movieName!),
-                    ),
-                    subtitle: Padding(
-                      padding: const EdgeInsets.only(bottom: 20, top: 10),
-                      child: Text('Rating : ${movie.rating} ⭐'),
-                    ),
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (_) =>
-                              MoviesDetailsWebview(url: movie.imdbUrl)));
-                    },
                   ),
-                ),
-              );
-            },
-          );
+                );
+              },
+            );
+          } else {
+            return const Center(child: CircularProgressIndicator());
+          }
         }),
       ),
     );

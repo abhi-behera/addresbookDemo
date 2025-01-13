@@ -78,7 +78,7 @@ class _HomePage2State extends State<HomePage2> {
                 ],
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               // eventsCarousel
               eventCarouselBuilder(
