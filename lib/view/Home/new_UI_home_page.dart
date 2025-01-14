@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dumyapp1/api_endpoints/api_endpoints.dart';
 import 'package:dumyapp1/model/menu_model.dart';
 import 'package:dumyapp1/provider/menu_item_provider.dart';
 import 'package:dumyapp1/utill/utill_values.dart';
@@ -38,9 +39,9 @@ class _HomePage2State extends State<HomePage2> {
     final controller2 = CarouselSliderController();
 
     final urlImages = [
-      'https://thumbs.dreamstime.com/b/wooden-merry-christmas-sign-blue-wood-background-wooden-letters-spelling-merry-christmas-blue-painted-wood-background-326423704.jpg',
-      'https://www.ibabs.com/wp-content/uploads/2021/05/3.jpeg',
-      'https://burbity.com/wp-content/uploads/2022/04/run-successful-business-meeting.jpg',
+      Api.imageListApi + Images.christmas,
+      Api.imageListApi + Images.meeting,
+      Api.imageListApi + Images.presentation
     ];
 
     final textOverImage = ["Christmas Eve", "Office", "Meetings"];
@@ -97,15 +98,12 @@ class _HomePage2State extends State<HomePage2> {
                 ),
               ),
               Container(
-                width: MediaQuery.of(context).size.width *
-                    0.80, // Set the desired width
-                height: 220, // Set the desired height
-                // margin: EdgeInsets.all(10),
+                width: MediaQuery.of(context).size.width * 0.80,
+                height: 220,
                 decoration: BoxDecoration(
                   color: const Color.fromARGB(255, 255, 255, 255),
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                      color: Colors.black26, width: 1), // Optional border
+                  border: Border.all(color: Colors.black26, width: 1),
                 ),
                 child: Consumer<MenuItemProvider>(
                   builder: (context, items, child) {
@@ -165,7 +163,7 @@ class _HomePage2State extends State<HomePage2> {
                                   break;
                               }
                             },
-                            child: BlueWidgets(menuItem: menuItem),
+                            child: BlueWidgets(menuItem: menuItem!),
                           );
                         }
                         return null;
@@ -321,8 +319,8 @@ class _HomePage2State extends State<HomePage2> {
                           // margin: const EdgeInsets.only(top: 10, left: 10, right: 10),
                           width: 50,
                           height: 40,
-                          child: Image.asset(
-                            'images/${titleImage[index]}',
+                          child: Image.network(
+                            Api.imageListApi + titleImage[index],
                             fit: BoxFit.contain,
                             height: 10,
                             width: 10,
@@ -505,6 +503,7 @@ class _HomePage2State extends State<HomePage2> {
         options: CarouselOptions(
             height: 200,
             autoPlay: true,
+            autoPlayInterval: const Duration(seconds: 15),
             enableInfiniteScroll: false,
             autoPlayAnimationDuration: const Duration(seconds: 4),
             enlargeCenterPage: true,
@@ -569,7 +568,7 @@ class BlueWidgets extends StatelessWidget {
     required this.menuItem,
   });
 
-  final MenuItem? menuItem;
+  final MenuItem menuItem;
 
   @override
   Widget build(BuildContext context) {
@@ -577,15 +576,16 @@ class BlueWidgets extends StatelessWidget {
       child: Column(
         children: [
           Container(
-              margin: const EdgeInsets.only(top: 20),
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(98, 135, 158, 210),
-                borderRadius: BorderRadius.circular(16),
-              ),
-              padding: const EdgeInsets.all(16),
-              height: 54,
-              width: 54,
-              child: Image.asset('assets/menu_icons/${menuItem?.fieldIcon}')),
+            margin: const EdgeInsets.only(top: 20),
+            decoration: BoxDecoration(
+              color: const Color.fromARGB(98, 135, 158, 210),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            padding: const EdgeInsets.all(16),
+            height: 54,
+            width: 54,
+            child: Image.network(Api.imageListApi + menuItem.fieldIcon!),
+          ),
           SizedBox(
             height: 16,
             child: FittedBox(

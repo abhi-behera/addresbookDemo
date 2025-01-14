@@ -37,7 +37,7 @@ class MovieProvider extends ChangeNotifier {
 
   //     ////////////////// Isolates aproach 2 using compute() //////////////////
   //     // final List<MoviesModel> moviesList =
-  //     //     await compute(fetchAndParseMovies, Api.moviesLsitApi);
+  //     //     await compute(fetchAndParseMovies, Api.moviesListApi);
   //     /*same as recive and send port one, param - function and any data that is needed for the function....*/
   //     // _movies = moviesList;
   //     // notifyListeners();
@@ -60,7 +60,7 @@ class MovieProvider extends ChangeNotifier {
 
   // static Future<void> loadApiData(SendPort sendPort) async {
   //   try {
-  //     final response = await http.get(Uri.parse(Api.moviesLsitApi));
+  //     final response = await http.get(Uri.parse(Api.moviesListApi));
 
   //     if (response.statusCode == 200) {
   //       final List<dynamic> data = json.decode(response.body);
@@ -79,7 +79,7 @@ class MovieProvider extends ChangeNotifier {
 //  without isolates
   Future<void> moviesApiCall() async {
     try {
-      final response = await http.get(Uri.parse(Api.moviesLsitApi));
+      final response = await http.get(Uri.parse(Api.moviesListApi));
       if (response.statusCode == 200) {
         final List<dynamic> data = json.decode(response.body);
         _movies = data.map((movie) => MoviesModel.fromJson(movie)).toList();

@@ -1,4 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dumyapp1/api_endpoints/api_endpoints.dart';
+import 'package:dumyapp1/utill/utill_values.dart';
 import 'package:dumyapp1/view/CustomWidgets/custom_widgets.dart';
 import 'package:dumyapp1/view/Home/eventsDetailsPage.dart';
 import 'package:flutter/material.dart';
@@ -16,13 +18,13 @@ class _CategoryPageState extends State<CategoryPage> {
   final controller = CarouselSliderController();
   final controller2 = CarouselSliderController();
   final popularPeopleimages = [
-    'https://www.mediabistro.com/wp-content/uploads/2014/09/best-selling-author.jpg',
+    "https://qaiadmin.neelsystems.com/InstituteImages/237/Public/flutter.jpg",
     'https://assets.aboutamazon.com/dims4/default/4c677cb/2147483647/strip/true/crop/2000x1074+0+130/resize/1440x773!/format/webp/quality/90/?url=https%3A%2F%2Famazon-blogs-brightspot.s3.amazonaws.com%2F56%2F01%2F834aa61747c19ef723f0b48ec134%2F20180517nealthompsonauthor-js-11.jpg',
     'https://s26162.pcdn.co/wp-content/uploads/2021/01/glasses-on-bible-fuji-x-10.jpg',
     'https://c.tadst.com/gfx/750x500/authors-day-fun.jpg'
   ];
   final imageList = [
-    'images/gettyimages.png',
+    Api.imageListApi + Images.books,
   ];
   final cat1Title = [
     'Books',
@@ -41,9 +43,9 @@ class _CategoryPageState extends State<CategoryPage> {
   int activeIndex = 0;
 
   final urlImages = [
-    'https://thumbs.dreamstime.com/b/wooden-merry-christmas-sign-blue-wood-background-wooden-letters-spelling-merry-christmas-blue-painted-wood-background-326423704.jpg',
-    'https://www.ibabs.com/wp-content/uploads/2021/05/3.jpeg',
-    'https://burbity.com/wp-content/uploads/2022/04/run-successful-business-meeting.jpg',
+    Api.imageListApi + Images.christmas,
+    Api.imageListApi + Images.meeting,
+    Api.imageListApi + Images.presentation
   ];
 
   final textOverImage = ["Christmas Eve", "Office", "Meetings"];
@@ -53,7 +55,6 @@ class _CategoryPageState extends State<CategoryPage> {
         onDotClicked: animateToSlide,
         effect: const ExpandingDotsEffect(
             dotHeight: 6, dotWidth: 9, activeDotColor: Colors.black87),
-        // effect: const WormEffect(spacing: 4, dotHeight: 6, dotWidth: 6),
         activeIndex: activeIndex,
         count: urlImages.length,
       );
@@ -218,7 +219,8 @@ class _CategoryPageState extends State<CategoryPage> {
                               Container(
                                   padding: const EdgeInsets.all(10),
                                   height: 120,
-                                  child: Image.asset('images/high-five.png')),
+                                  child: Image.network(
+                                      Api.imageListApi + Images.friends)),
                               Text(
                                 'Item $index',
                                 style: const TextStyle(
@@ -589,7 +591,7 @@ class _CategoryPageState extends State<CategoryPage> {
             const Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
-              children: [SizedBox(width: 74, child: Image.asset(imageName))],
+              children: [SizedBox(width: 74, child: Image.network(imageName))],
             ),
           ],
         ));
@@ -611,7 +613,7 @@ class _CategoryPageState extends State<CategoryPage> {
                   color: Colors.transparent,
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: SizedBox(width: 74, child: Image.asset(imageName))),
+                child: SizedBox(width: 74, child: Image.network(imageName))),
           ),
           Expanded(
             flex: 1,
@@ -643,7 +645,7 @@ class _CategoryPageState extends State<CategoryPage> {
                 ], begin: Alignment.topLeft, end: Alignment.bottomRight),
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: SizedBox(width: 74, child: Image.asset(imageName))),
+              child: SizedBox(width: 74, child: Image.network(imageName))),
         ),
         Expanded(
           flex: 1,
@@ -680,8 +682,10 @@ class _CategoryPageState extends State<CategoryPage> {
         options: CarouselOptions(
             height: 200,
             autoPlay: true,
+            viewportFraction: 0.8,
             enableInfiniteScroll: true,
-            autoPlayAnimationDuration: const Duration(seconds: 10),
+            autoPlayInterval: const Duration(seconds: 15),
+            autoPlayAnimationDuration: const Duration(seconds: 4),
             enlargeCenterPage: true,
             onPageChanged: (index, reason) {
               setState(() => activeIndex = index);

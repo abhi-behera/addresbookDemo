@@ -27,3 +27,18 @@ class MenuUtill {
   static const String userProfile = "User_Profile";
   static const String addressBook = "AddressBook";
 }
+
+class Images {
+  static const String christmas = "MerryChristmas.png";
+  static const String meeting = "meeting.jpg";
+  static const String presentation = "presentation.jpeg";
+  static const String books = "gettyimages.png";
+  static const String friends = "high-five.png";
+  // static const String studyMaterial = "Single_Entry";
+  // static const String pencil = "Single_Entry";
+  // static const String graduation = "Single_Entry";
+  // static const String library = "Single_Entry";
+  // static const String flutterCourse = "Single_Entry";
+  // static const String webDevCourse = "Single_Entry";
+  // static const String specsCourse = "Single_Entry";
+}
