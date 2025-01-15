@@ -1,10 +1,10 @@
+import 'package:dumyapp1/api_endpoints/api_endpoints.dart';
 import 'package:dumyapp1/model/menu_model.dart';
 import 'package:dumyapp1/provider/menu_item_provider.dart';
 import 'package:dumyapp1/utill/utill_values.dart';
 import 'package:dumyapp1/view/Addressbook/address_list_page.dart';
 import 'package:dumyapp1/view/Home/single_forum.dart';
 import 'package:dumyapp1/view/MovieList/movies_1.dart';
-import 'package:dumyapp1/view/ScafoldingPage/drawer.dart';
 import 'package:dumyapp1/view/UserProfile/user_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,117 +19,144 @@ class HomePage3 extends StatefulWidget {
 class _HomePage3State extends State<HomePage3> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  @override
+  List<String> tabNames = [
+    'Abhijit Institute',
+    'New Institute',
+    'Old Institute'
+  ];
+
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width * 0.6;
-    return Scaffold(
-      key: _scaffoldKey,
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            leading: IconButton(
-                onPressed: () {
-                  _scaffoldKey.currentState?.openDrawer();
-                },
-                icon: const Icon(
-                  Icons.menu,
-                  color: Colors.black54,
-                )),
-            elevation: 0,
-            backgroundColor: const Color.fromARGB(255, 233, 233, 237),
-            pinned: true,
-            flexibleSpace: FlexibleSpaceBar(
-              title: const Text(
-                'XYZ INSTITUTE',
-                style: TextStyle(color: Colors.black54),
-              ),
-              background: Container(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(colors: [
-                    Color.fromARGB(192, 89, 100, 199),
-                    Color.fromARGB(192, 149, 172, 241),
-                    Color.fromARGB(192, 255, 255, 255),
-                  ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        body: NestedScrollView(
+          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+            return [
+              SliverAppBar(
+                leading: IconButton(
+                    onPressed: () {
+                      _scaffoldKey.currentState?.openDrawer();
+                    },
+                    icon: const Icon(
+                      Icons.menu,
+                      color: Colors.black54,
+                    )),
+                elevation: 0,
+                backgroundColor: const Color.fromARGB(255, 233, 233, 237),
+                pinned: true,
+                flexibleSpace: FlexibleSpaceBar(
+                  title: const Padding(
+                    padding: EdgeInsets.only(bottom: 58.0),
+                    child: Text(
+                      'Institute Design 2',
+                      style: TextStyle(color: Colors.black54),
+                    ),
+                  ),
+                  background: Container(
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                          colors: [
+                            Color.fromARGB(192, 89, 100, 199),
+                            Color.fromARGB(192, 149, 172, 241),
+                            Color.fromARGB(192, 255, 255, 255),
+                          ],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter),
+                    ),
+                  ),
+                ),
+                expandedHeight: 200,
+                bottom: TabBar(
+                  labelColor: Colors.black54,
+                  indicatorColor: const Color.fromARGB(255, 44, 79, 105),
+                  padding: const EdgeInsets.only(bottom: 10),
+                  isScrollable: true, // Makes the TabBar scrollable
+                  tabs: List.generate(
+                    tabNames.length,
+                    (index) => Tab(text: tabNames[index]),
+                  ),
                 ),
               ),
-            ),
-            expandedHeight: 150,
-          ),
-          SliverToBoxAdapter(
-            child: Consumer<MenuItemProvider>(
-              builder: (context, items, child) {
-                return Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 15),
-                  child: GridView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      crossAxisSpacing: 2,
+            ];
+          },
+          body: TabBarView(
+            children: [
+              Consumer<MenuItemProvider>(
+                builder: (context, items, child) {
+                  return Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 15),
+                    child: GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        crossAxisSpacing: 2,
+                      ),
+                      itemCount: items.menuItemList?.length,
+                      itemBuilder: (context, index) {
+                        if (items.isLoading) {
+                          const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        } else {
+                          final menuItem = items.menuItemList?[index];
+                          return GestureDetector(
+                            onTap: () {
+                              switch (menuItem?.fieldRoute) {
+                                case MenuUtill.singleEntry:
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const SingleForumPage()),
+                                  );
+                                  break;
+                                case MenuUtill.moviesList:
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const MoviesPage1()),
+                                  );
+                                  break;
+                                case MenuUtill.userProfile:
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const USerProfile()),
+                                  );
+                                  break;
+                                case MenuUtill.addressBook:
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const AddressListPage()),
+                                  );
+                                  break;
+                                default:
+                                  debugPrint(
+                                      "Encountered a invalid menu item \nPlease added the route to ${menuItem?.fieldRoute}");
+                                  break;
+                              }
+                            },
+                            child: BlueWidgets(menuItem: menuItem),
+                          );
+                        }
+                        return null;
+                      },
                     ),
-                    itemCount: items.menuItemList?.length,
-                    itemBuilder: (context, index) {
-                      if (items.isLoading) {
-                        const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      } else {
-                        final menuItem = items.menuItemList?[index];
-                        return GestureDetector(
-                          onTap: () {
-                            switch (menuItem?.fieldRoute) {
-                              case MenuUtill.singleEntry:
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const SingleForumPage()),
-                                );
-                                break;
-                              case MenuUtill.moviesList:
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const MoviesPage1()),
-                                );
-                                break;
-                              case MenuUtill.userProfile:
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const USerProfile()),
-                                );
-                                break;
-                              case MenuUtill.addressBook:
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const AddressListPage()),
-                                );
-                                break;
-                              default:
-                                debugPrint(
-                                    "Encountered a invalid menu item \nPlease added the route to ${menuItem?.fieldRoute}");
-                                break;
-                            }
-                          },
-                          child: BlueWidgets(menuItem: menuItem),
-                        );
-                      }
-                      return null;
-                    },
-                  ),
-                );
-              },
-            ),
-          )
-        ],
+                  );
+                },
+              ),
+              const Center(child: Text('Screen 1')),
+              const Center(child: Text('Screen 2')),
+            ],
+          ),
+        ),
       ),
-      drawer: drawer(screenWidth, context),
     );
   }
 }
@@ -162,7 +189,8 @@ class BlueWidgets extends StatelessWidget {
               padding: const EdgeInsets.only(top: 20, bottom: 10),
               height: 60,
               width: 60,
-              child: Image.asset('assets/menu_icons/${menuItem?.fieldIcon}')),
+              child:
+                  Image.network('${Api.imageListApi}${menuItem?.fieldIcon}')),
           FittedBox(
             fit: BoxFit.contain,
             child: Padding(
