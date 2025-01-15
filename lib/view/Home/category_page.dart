@@ -159,7 +159,7 @@ class _CategoryPageState extends State<CategoryPage> {
             Padding(
               padding:
                   const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20),
-              child: staggeredGrid(),
+              child: category1StaggeredGrid(),
             ),
             const Row(
               children: [
@@ -170,7 +170,7 @@ class _CategoryPageState extends State<CategoryPage> {
                             fontSize: 24, fontWeight: FontWeight.bold))),
               ],
             ),
-            LMSCardBuilder(controller2, meetupcount, LMSTitle),
+            category2LMSCardBuilder(controller2, meetupcount, LMSTitle),
             const Row(
               children: [
                 Padding(
@@ -180,62 +180,7 @@ class _CategoryPageState extends State<CategoryPage> {
                             fontSize: 14, fontWeight: FontWeight.bold))),
               ],
             ),
-            Column(
-              children: [
-                Container(
-                  padding: const EdgeInsets.only(
-                      left: 16, top: 20, right: 16, bottom: 20),
-                  decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(40)),
-                      gradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [
-                            Color.fromARGB(196, 238, 205, 205),
-                            Color.fromARGB(178, 217, 173, 194)
-                          ])),
-                  margin:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 18),
-                  height: MediaQuery.of(context).size.height * .47,
-                  width: double.infinity,
-                  child: GridView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                    ),
-                    itemCount: 4,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(12)),
-                          color: Colors.white,
-                        ),
-                        child: Center(
-                          child: Column(
-                            children: [
-                              Container(
-                                  padding: const EdgeInsets.all(10),
-                                  height: 120,
-                                  child: Image.network(
-                                      Api.imageListApi + Images.friends)),
-                              Text(
-                                'Item $index',
-                                style: const TextStyle(
-                                    color: Color.fromARGB(255, 17, 17, 17),
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ],
-            ),
+            category3gridView(context),
             const Row(
               children: [
                 Padding(
@@ -439,85 +384,6 @@ class _CategoryPageState extends State<CategoryPage> {
     );
   }
 
-  StaggeredGrid staggeredGrid() {
-    return StaggeredGrid.count(
-      crossAxisCount: 4,
-      mainAxisSpacing: 8,
-      crossAxisSpacing: 8,
-      children: [
-        StaggeredGridTile.count(
-          crossAxisCellCount: 2,
-          mainAxisCellCount: 1.5,
-          child: buildGridTile(imageList[0], cat1Title[0]),
-        ),
-        StaggeredGridTile.count(
-          crossAxisCellCount: 1,
-          mainAxisCellCount: 1.5,
-          child: buildGridTile(imageList[0], cat1Title[1]),
-        ),
-        StaggeredGridTile.count(
-          crossAxisCellCount: 1,
-          mainAxisCellCount: 1.5,
-          child: buildGridTile(imageList[0], cat1Title[2]),
-        ),
-        StaggeredGridTile.count(
-          crossAxisCellCount: 1,
-          mainAxisCellCount: 1.5,
-          child: buildGridTile(imageList[0], cat1Title[3]),
-        ),
-        StaggeredGridTile.count(
-          crossAxisCellCount: 1,
-          mainAxisCellCount: 1.5,
-          child: buildGridTile(imageList[0], cat1Title[4]),
-        ),
-        StaggeredGridTile.count(
-          crossAxisCellCount: 2,
-          mainAxisCellCount: 1.5,
-          child: buildGridTile(imageList[0], cat1Title[5]),
-        ),
-        StaggeredGridTile.count(
-          crossAxisCellCount: 1,
-          mainAxisCellCount: 1.5,
-          child: buildGridTile(imageList[0], cat1Title[6]),
-        ),
-        StaggeredGridTile.count(
-          crossAxisCellCount: 1,
-          mainAxisCellCount: 1.5,
-          child: buildGridTile(imageList[0], cat1Title[7]),
-        ),
-        StaggeredGridTile.count(
-          crossAxisCellCount: 1,
-          mainAxisCellCount: 1.5,
-          child: buildGridTile(imageList[0], cat1Title[8]),
-        ),
-        StaggeredGridTile.count(
-          crossAxisCellCount: 1,
-          mainAxisCellCount: 1.5,
-          child: buildGridTile(imageList[0], cat1Title[9]),
-        ),
-      ],
-    );
-  }
-
-  CarouselSlider LMSCardBuilder(CarouselSliderController controller2,
-      List<String> meetupcount, List<String> popularPeopleCardTitle) {
-    return CarouselSlider.builder(
-        carouselController: controller2,
-        itemCount: meetupcount.length,
-        itemBuilder: (context, index, realIndex) {
-          final images = popularPeopleimages[index];
-          final text = popularPeopleCardTitle[index];
-          final count = meetupcount[index];
-          return builMeetingCard(images, index, text, count);
-        },
-        options: CarouselOptions(
-          height: MediaQuery.of(context).size.height * 0.22,
-          viewportFraction: 0.65,
-          disableCenter: true,
-          enableInfiniteScroll: false,
-        ));
-  }
-
   Widget builMeetingCard(
           String urlImage, int index, String text, String count) =>
       Stack(children: [
@@ -596,68 +462,6 @@ class _CategoryPageState extends State<CategoryPage> {
             ),
           ],
         ));
-  }
-
-  Widget category9BuildGridTile(String imageName, String title) {
-    return Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6),
-          border: Border.all(color: Colors.black26, width: 1)),
-      child: Flex(
-        direction: Axis.vertical,
-        children: [
-          Expanded(
-            flex: 3,
-            child: Container(
-                height: 80,
-                decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: SizedBox(width: 74, child: Image.network(imageName))),
-          ),
-          Expanded(
-            flex: 1,
-            child: Center(
-              child: Text(title,
-                  style: const TextStyle(
-                      fontSize: 14, fontWeight: FontWeight.w500)),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget category8BuildGridTile(String imageName, String title) {
-    return Flex(
-      direction: Axis.vertical,
-      children: [
-        Expanded(
-          flex: 4,
-          child: Container(
-              height: 80,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                // color: Colors.blueAccent,
-                gradient: const LinearGradient(colors: [
-                  Color.fromARGB(58, 216, 218, 226),
-                  Color.fromRGBO(232, 237, 242, 0.612),
-                ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: SizedBox(width: 74, child: Image.network(imageName))),
-        ),
-        Expanded(
-          flex: 1,
-          child: Center(
-            child: Text(title,
-                style:
-                    const TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
-          ),
-        )
-      ],
-    );
   }
 
   GestureDetector eventCarouselBuilder(
@@ -742,12 +546,152 @@ class _CategoryPageState extends State<CategoryPage> {
         ],
       );
 
-  Widget category7GridView(String imagePath, String title, String subtitle) {
-    return SizedBox(
+  StaggeredGrid category1StaggeredGrid() {
+    return StaggeredGrid.count(
+      crossAxisCount: 4,
+      mainAxisSpacing: 8,
+      crossAxisSpacing: 8,
+      children: [
+        StaggeredGridTile.count(
+          crossAxisCellCount: 2,
+          mainAxisCellCount: 1.5,
+          child: buildGridTile(imageList[0], cat1Title[0]),
+        ),
+        StaggeredGridTile.count(
+          crossAxisCellCount: 1,
+          mainAxisCellCount: 1.5,
+          child: buildGridTile(imageList[0], cat1Title[1]),
+        ),
+        StaggeredGridTile.count(
+          crossAxisCellCount: 1,
+          mainAxisCellCount: 1.5,
+          child: buildGridTile(imageList[0], cat1Title[2]),
+        ),
+        StaggeredGridTile.count(
+          crossAxisCellCount: 1,
+          mainAxisCellCount: 1.5,
+          child: buildGridTile(imageList[0], cat1Title[3]),
+        ),
+        StaggeredGridTile.count(
+          crossAxisCellCount: 1,
+          mainAxisCellCount: 1.5,
+          child: buildGridTile(imageList[0], cat1Title[4]),
+        ),
+        StaggeredGridTile.count(
+          crossAxisCellCount: 2,
+          mainAxisCellCount: 1.5,
+          child: buildGridTile(imageList[0], cat1Title[5]),
+        ),
+        StaggeredGridTile.count(
+          crossAxisCellCount: 1,
+          mainAxisCellCount: 1.5,
+          child: buildGridTile(imageList[0], cat1Title[6]),
+        ),
+        StaggeredGridTile.count(
+          crossAxisCellCount: 1,
+          mainAxisCellCount: 1.5,
+          child: buildGridTile(imageList[0], cat1Title[7]),
+        ),
+        StaggeredGridTile.count(
+          crossAxisCellCount: 1,
+          mainAxisCellCount: 1.5,
+          child: buildGridTile(imageList[0], cat1Title[8]),
+        ),
+        StaggeredGridTile.count(
+          crossAxisCellCount: 1,
+          mainAxisCellCount: 1.5,
+          child: buildGridTile(imageList[0], cat1Title[9]),
+        ),
+      ],
+    );
+  }
+
+  CarouselSlider category2LMSCardBuilder(CarouselSliderController controller2,
+      List<String> meetupcount, List<String> popularPeopleCardTitle) {
+    return CarouselSlider.builder(
+        carouselController: controller2,
+        itemCount: meetupcount.length,
+        itemBuilder: (context, index, realIndex) {
+          final images = popularPeopleimages[index];
+          final text = popularPeopleCardTitle[index];
+          final count = meetupcount[index];
+          return builMeetingCard(images, index, text, count);
+        },
+        options: CarouselOptions(
+          height: MediaQuery.of(context).size.height * 0.22,
+          viewportFraction: 0.65,
+          disableCenter: true,
+          enableInfiniteScroll: false,
+        ));
+  }
+
+  Container category3gridView(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Color.fromARGB(196, 238, 205, 205),
+                Color.fromARGB(178, 217, 173, 194)
+              ])),
+      child: Column(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+            ),
+            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 18),
+            height: MediaQuery.of(context).size.height * .47,
+            width: double.infinity,
+            child: GridView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+              ),
+              itemCount: 4,
+              itemBuilder: (context, index) {
+                return Container(
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(12)),
+                    color: Colors.white,
+                  ),
+                  child: Center(
+                    child: Column(
+                      children: [
+                        Container(
+                            padding: const EdgeInsets.all(10),
+                            height: 120,
+                            child: Image.network(
+                                Api.imageListApi + Images.friends)),
+                        Text(
+                          'Item $index',
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 17, 17, 17),
+                              fontWeight: FontWeight.w400),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget category4Card(String imagePath, String title, String subtitle) {
+    return Container(
+      width: 150,
+      margin: const EdgeInsets.symmetric(horizontal: 2),
       child: Card(
-        elevation: 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        color: Colors.transparent,
+        color: Colors.green[100],
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -759,6 +703,16 @@ class _CategoryPageState extends State<CategoryPage> {
                   imagePath,
                   fit: BoxFit.cover,
                   width: double.infinity,
+                ),
+              ),
+            ),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(8.0),
+              child: Center(
+                child: Text(
+                  title,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -776,12 +730,6 @@ class _CategoryPageState extends State<CategoryPage> {
                 textAlign: TextAlign.center,
               ),
             ),
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(title),
-              ),
-            )
           ],
         ),
       ),
@@ -880,13 +828,12 @@ class _CategoryPageState extends State<CategoryPage> {
     );
   }
 
-  Widget category4Card(String imagePath, String title, String subtitle) {
-    return Container(
-      width: 150,
-      margin: const EdgeInsets.symmetric(horizontal: 2),
+  Widget category7GridView(String imagePath, String title, String subtitle) {
+    return SizedBox(
       child: Card(
+        elevation: 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        color: Colors.green[100],
+        color: Colors.transparent,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -898,16 +845,6 @@ class _CategoryPageState extends State<CategoryPage> {
                   imagePath,
                   fit: BoxFit.cover,
                   width: double.infinity,
-                ),
-              ),
-            ),
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(8.0),
-              child: Center(
-                child: Text(
-                  title,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -925,8 +862,76 @@ class _CategoryPageState extends State<CategoryPage> {
                 textAlign: TextAlign.center,
               ),
             ),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(title),
+              ),
+            )
           ],
         ),
+      ),
+    );
+  }
+
+  Widget category8BuildGridTile(String imageName, String title) {
+    return Flex(
+      direction: Axis.vertical,
+      children: [
+        Expanded(
+          flex: 4,
+          child: Container(
+              height: 80,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                // color: Colors.blueAccent,
+                gradient: const LinearGradient(colors: [
+                  Color.fromARGB(58, 216, 218, 226),
+                  Color.fromRGBO(232, 237, 242, 0.612),
+                ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: SizedBox(width: 74, child: Image.network(imageName))),
+        ),
+        Expanded(
+          flex: 1,
+          child: Center(
+            child: Text(title,
+                style:
+                    const TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget category9BuildGridTile(String imageName, String title) {
+    return Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(6),
+          border: Border.all(color: Colors.black26, width: 1)),
+      child: Flex(
+        direction: Axis.vertical,
+        children: [
+          Expanded(
+            flex: 3,
+            child: Container(
+                height: 80,
+                decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: SizedBox(width: 74, child: Image.network(imageName))),
+          ),
+          Expanded(
+            flex: 1,
+            child: Center(
+              child: Text(title,
+                  style: const TextStyle(
+                      fontSize: 14, fontWeight: FontWeight.w500)),
+            ),
+          ),
+        ],
       ),
     );
   }
