@@ -1,3 +1,4 @@
+import 'package:dumyapp1/api_endpoints/api_endpoints.dart';
 import 'package:dumyapp1/provider/address_provider_page.dart';
 import 'package:dumyapp1/utill/utill_values.dart';
 import 'package:dumyapp1/view/CustomWidgets/custom_widgets.dart';
@@ -110,14 +111,14 @@ class CardTile extends StatelessWidget {
                     key: ValueKey(tileIndex),
                     height: 20,
                     width: 40,
-                    child: Image.asset('assets/address_book/prefered.png'),
+                    child: Image.network('${Api.imageListApi}prefered.png'),
                   )
                 : const Spacer(),
             SizedBox(
                 height: 40,
                 width: 40,
                 child: PopupMenuButton<String>(
-                  icon: Image.asset('assets/address_book/threeDots.png'),
+                  icon: Image.network('${Api.imageListApi}threeDots.png'),
                   onSelected: (value) {
                     _handleMenuAction(context, value, tileIndex, address);
                   },

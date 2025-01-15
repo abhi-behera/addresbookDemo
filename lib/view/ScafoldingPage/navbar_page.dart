@@ -1,4 +1,5 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:dumyapp1/api_endpoints/api_endpoints.dart';
 import 'package:dumyapp1/utill/utill_values.dart';
 import 'package:dumyapp1/view/Home/category_page.dart';
 import 'package:dumyapp1/view/Home/new_UI_home_page.dart';
@@ -49,15 +50,15 @@ class NavbarScreenState extends State<NavbarScreen> {
         color: const Color.fromARGB(72, 119, 138, 213),
         items: const <Widget>[
           ImageIcon(
-            AssetImage("assets/menu_icons/menu.png"),
+            NetworkImage("${Api.imageListApi}menu.png"),
             color: Color.fromARGB(255, 255, 255, 255),
           ),
           ImageIcon(
-            AssetImage("assets/menu_icons/home.png"),
+            NetworkImage("${Api.imageListApi}home.png"),
             color: Color.fromARGB(255, 255, 255, 255),
           ),
           ImageIcon(
-            AssetImage("assets/menu_icons/app.png"),
+            NetworkImage("${Api.imageListApi}app.png"),
             color: Color.fromARGB(255, 255, 255, 255),
           ),
           // ImageIcon(
@@ -65,7 +66,7 @@ class NavbarScreenState extends State<NavbarScreen> {
           //   color: Color.fromARGB(255, 255, 255, 255),
           // ),
           ImageIcon(
-            AssetImage("assets/menu_icons/user.png"),
+            NetworkImage("${Api.imageListApi}user.png"),
             color: Color.fromARGB(255, 255, 255, 255),
           ),
         ],

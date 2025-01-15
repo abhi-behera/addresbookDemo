@@ -3,6 +3,7 @@ import 'package:dumyapp1/api_endpoints/api_endpoints.dart';
 import 'package:dumyapp1/utill/utill_values.dart';
 import 'package:dumyapp1/view/CustomWidgets/custom_widgets.dart';
 import 'package:dumyapp1/view/Home/eventsDetailsPage.dart';
+import 'package:dumyapp1/view/pageView.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -147,6 +148,40 @@ class _CategoryPageState extends State<CategoryPage> {
             eventCarouselBuilder(context, controller, urlImages, textOverImage),
             // dots code
             buildIndicator(),
+
+            const Row(
+              children: [
+                Padding(
+                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 27),
+                    child: Text('Category 0',
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.bold))),
+              ],
+            ),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height * 0.13,
+                child: GridView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 5,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                    childAspectRatio: (1 / 1.3),
+                  ),
+                  itemCount: 5,
+                  itemBuilder: (context, index) {
+                    return category0BuildGridTile(
+                      imageList[0],
+                      categories1[index]["title"]!,
+                      // categories1[index]["subtitle"]!,
+                    );
+                  },
+                ),
+              ),
+            ),
             const Row(
               children: [
                 Padding(
@@ -164,7 +199,7 @@ class _CategoryPageState extends State<CategoryPage> {
             const Row(
               children: [
                 Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 27),
+                    padding: EdgeInsets.symmetric(vertical: 14, horizontal: 27),
                     child: Text('Category 2',
                         style: TextStyle(
                             fontSize: 24, fontWeight: FontWeight.bold))),
@@ -207,11 +242,37 @@ class _CategoryPageState extends State<CategoryPage> {
                 ),
               ),
             ),
+
             const Row(
               children: [
                 Padding(
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 27),
                     child: Text('Category 5',
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.bold))),
+              ],
+            ),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(32),
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.1,
+                  width: double.infinity,
+                  child: Image.network(
+                    Api.imageListApi + Images.presentation,
+                    fit: BoxFit.fitWidth,
+                  ),
+                ),
+              ),
+            ),
+
+            const Row(
+              children: [
+                Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 27),
+                    child: Text('Category 6',
                         style: TextStyle(
                             fontSize: 14, fontWeight: FontWeight.bold))),
               ],
@@ -237,7 +298,7 @@ class _CategoryPageState extends State<CategoryPage> {
               children: [
                 Padding(
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 27),
-                    child: Text('Category 6',
+                    child: Text('Category 7',
                         style: TextStyle(
                             fontSize: 14, fontWeight: FontWeight.bold))),
               ],
@@ -286,7 +347,7 @@ class _CategoryPageState extends State<CategoryPage> {
               children: [
                 Padding(
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 27),
-                    child: Text('Category 7',
+                    child: Text('Category 8',
                         style: TextStyle(
                             fontSize: 14, fontWeight: FontWeight.bold))),
               ],
@@ -318,7 +379,7 @@ class _CategoryPageState extends State<CategoryPage> {
               children: [
                 Padding(
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 27),
-                    child: Text('Category 8',
+                    child: Text('Category 9',
                         style: TextStyle(
                             fontSize: 14, fontWeight: FontWeight.bold))),
               ],
@@ -350,7 +411,7 @@ class _CategoryPageState extends State<CategoryPage> {
               children: [
                 Padding(
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 27),
-                    child: Text('Category 9',
+                    child: Text('Category 10',
                         style: TextStyle(
                             fontSize: 14, fontWeight: FontWeight.bold))),
               ],
@@ -373,6 +434,38 @@ class _CategoryPageState extends State<CategoryPage> {
                       imageList[0],
                       categories1[index]["title"]!,
                       // categories1[index]["subtitle"]!,
+                    );
+                  },
+                ),
+              ),
+            ),
+
+            const Row(
+              children: [
+                Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 27),
+                    child: Text('Category 11',
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.bold))),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height * 0.33,
+                child: GridView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 4,
+                    crossAxisSpacing: 14,
+                    mainAxisSpacing: 10,
+                    childAspectRatio: (1 / 1.5),
+                  ),
+                  itemCount: 8,
+                  itemBuilder: (context, index) {
+                    return category8BuildGridTile(
+                      imageList[0],
+                      categories1[2]["title"]!,
                     );
                   },
                 ),
@@ -627,6 +720,7 @@ class _CategoryPageState extends State<CategoryPage> {
 
   Container category3gridView(BuildContext context) {
     return Container(
+      margin: EdgeInsets.symmetric(horizontal: 13),
       decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(20)),
           gradient: LinearGradient(
@@ -639,17 +733,14 @@ class _CategoryPageState extends State<CategoryPage> {
       child: Column(
         children: [
           Container(
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(20)),
-            ),
-            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 18),
-            height: MediaQuery.of(context).size.height * .47,
+            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 14),
+            height: MediaQuery.of(context).size.height * .41,
             width: double.infinity,
             child: GridView.builder(
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                crossAxisSpacing: 10,
+                crossAxisSpacing: 14,
                 mainAxisSpacing: 10,
               ),
               itemCount: 4,
@@ -917,6 +1008,40 @@ class _CategoryPageState extends State<CategoryPage> {
             flex: 3,
             child: Container(
                 height: 80,
+                decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: SizedBox(width: 74, child: Image.network(imageName))),
+          ),
+          Expanded(
+            flex: 1,
+            child: Center(
+              child: Text(title,
+                  style: const TextStyle(
+                      fontSize: 14, fontWeight: FontWeight.w500)),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget category0BuildGridTile(String imageName, String title) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => PageViewScreen()),
+        );
+      },
+      child: Flex(
+        direction: Axis.vertical,
+        children: [
+          Expanded(
+            flex: 2,
+            child: Container(
+                height: 20,
                 decoration: BoxDecoration(
                   color: Colors.transparent,
                   borderRadius: BorderRadius.circular(8),

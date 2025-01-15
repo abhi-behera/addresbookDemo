@@ -1,3 +1,4 @@
+import 'package:dumyapp1/api_endpoints/api_endpoints.dart';
 import 'package:dumyapp1/utill/utill_values.dart';
 import 'package:dumyapp1/view/Addressbook/address_list_page.dart';
 import 'package:dumyapp1/view/MovieList/movies.dart';
@@ -53,7 +54,8 @@ Drawer drawer(double screenWidth, BuildContext context) {
         ),
         ListTile(
           leading: const ImageIcon(
-            AssetImage("assets/menu_icons/address-book-hand-drawn-outline.png"),
+            NetworkImage(
+                "${Api.imageListApi}address-book-hand-drawn-outline.png"),
             color: Colors.white,
           ),
           title: const Text('Address',
@@ -83,7 +85,7 @@ Drawer drawer(double screenWidth, BuildContext context) {
         ),
         ListTile(
           leading: const ImageIcon(
-            AssetImage("assets/menu_icons/user.png"),
+            NetworkImage("${Api.imageListApi}user.png"),
             color: Colors.white,
           ),
           title: const Text('User Profile',

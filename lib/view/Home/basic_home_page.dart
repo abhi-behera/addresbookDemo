@@ -1,3 +1,4 @@
+import 'package:dumyapp1/api_endpoints/api_endpoints.dart';
 import 'package:dumyapp1/model/menu_model.dart';
 import 'package:dumyapp1/provider/menu_item_provider.dart';
 import 'package:dumyapp1/utill/utill_values.dart';
@@ -101,7 +102,8 @@ class _HomePageState extends State<HomePage> {
             Container(
                 padding: const EdgeInsets.only(top: 20, bottom: 10),
                 width: 40,
-                child: Image.asset('assets/menu_icons/${menuItem?.fieldIcon}')),
+                child:
+                    Image.network('${Api.imageListApi}${menuItem?.fieldIcon}')),
             FittedBox(
               fit: BoxFit.contain,
               child: Padding(

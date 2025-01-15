@@ -32,7 +32,4 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/address_book/
-    - assets/menu_icons/
     - json_data_folder/
-    - images/
