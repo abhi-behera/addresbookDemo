@@ -59,7 +59,7 @@ class _DetailsPageState extends State<DetailsPage> {
                       return buildImage(urlImage, index);
                     },
                     options: CarouselOptions(
-                        height: 300,
+                        height: MediaQuery.of(context).size.height * 0.347,
                         viewportFraction: 1,
                         enableInfiniteScroll: false,
                         onPageChanged: (index, reason) {
@@ -269,7 +269,7 @@ class _DetailsPageState extends State<DetailsPage> {
             child: Container(
               padding: const EdgeInsets.only(),
               height: 300.0,
-              width: 312.0,
+              width: MediaQuery.of(context).size.width * 0.866,
               child: Image.network(
                 urlImage,
                 fit: BoxFit.fitWidth,

@@ -248,7 +248,7 @@ class _CategoryPageState extends State<CategoryPage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(
-                height: 220, // Set height to avoid unbounded height error
+                height: MediaQuery.of(context).size.height * 0.27,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: categories.length,
@@ -274,7 +274,7 @@ class _CategoryPageState extends State<CategoryPage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(
-                height: 210, // Set height to avoid unbounded height error
+                height: MediaQuery.of(context).size.height * 0.25,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: categories.length,
@@ -321,7 +321,7 @@ class _CategoryPageState extends State<CategoryPage> {
                     ],
                   ),
                   SizedBox(
-                    height: 210, // Set height to avoid unbounded height error
+                    height: MediaQuery.of(context).size.height * 0.2,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: categories.length,
@@ -349,7 +349,7 @@ class _CategoryPageState extends State<CategoryPage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(
-                height: 350, // Set height to avoid unbounded height error
+                height: MediaQuery.of(context).size.height * 0.5,
                 child: GridView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -381,7 +381,7 @@ class _CategoryPageState extends State<CategoryPage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(
-                height: 330, // Set height to avoid unbounded height error
+                height: MediaQuery.of(context).size.height * 0.45,
                 child: GridView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -413,7 +413,7 @@ class _CategoryPageState extends State<CategoryPage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(
-                height: 300, // Set height to avoid unbounded height error
+                height: MediaQuery.of(context).size.height * 0.4,
                 child: GridView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -511,7 +511,8 @@ class _CategoryPageState extends State<CategoryPage> {
           return builMeetingCard(images, index, text, count);
         },
         options: CarouselOptions(
-          height: 190,
+          height: MediaQuery.of(context).size.height * 0.22,
+          viewportFraction: 0.65,
           disableCenter: true,
           enableInfiniteScroll: false,
         ));
