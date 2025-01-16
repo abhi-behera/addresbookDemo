@@ -13,8 +13,6 @@ class USerProfile extends StatefulWidget {
   State<USerProfile> createState() => _USerProfileState();
 }
 
-// enum BadgeStatus { hidden, hiring, openToWork }
-
 class _USerProfileState extends State<USerProfile> {
   @override
   Widget build(BuildContext context) {
@@ -62,24 +60,6 @@ class _USerProfileState extends State<USerProfile> {
     );
   }
 
-  // BadgeStatus _badgeStatus = BadgeStatus.hidden;
-
-  // void _toggleBadgeStatus() {
-  //   setState(() {
-  //     switch (_badgeStatus) {
-  //       case BadgeStatus.hidden:
-  //         _badgeStatus = BadgeStatus.hiring;
-  //         break;
-  //       case BadgeStatus.hiring:
-  //         _badgeStatus = BadgeStatus.openToWork;
-  //         break;
-  //       case BadgeStatus.openToWork:
-  //         _badgeStatus = BadgeStatus.hidden;
-  //         break;
-  //     }
-  //   });
-  // }
-
   Widget buildField(DynamicFieldList? field, UserProfileProvider provider) {
     if (field == null) return const SizedBox();
 
@@ -105,103 +85,35 @@ class _USerProfileState extends State<USerProfile> {
                       )),
                 ),
                 if (provider.badgeStatus == "hiring")
-                  Positioned(
-                    bottom: MediaQuery.of(context).size.width * 0.026,
-                    left: MediaQuery.of(context).size.width * 0.248,
-                    child: Container(
-                      width: 180,
-                      height: 76,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            const Color.fromARGB(69, 82, 108, 132)
-                                .withOpacity(0.1),
-                            const Color.fromARGB(255, 20, 52, 117)
-                                .withOpacity(1),
-                            const Color.fromARGB(255, 112, 129, 166)
-                                .withOpacity(0.2),
-                          ],
-                          begin: Alignment.bottomCenter,
-                          end: Alignment.topCenter,
-                        ),
-                        borderRadius: const BorderRadius.vertical(
-                          bottom: Radius.circular(80),
-                        ),
-                      ),
-                      child: const Center(
-                        child: Text(
-                          '#HIRING',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ),
-                    ),
+                  CustomPaint(
+                    size: const Size(200, 200),
+                    painter: ArcPainter(
+                        shade: 0x000DFF,
+                        status: "#HIRING",
+                        fontSize: 16,
+                        fontColour: 0xFFFFF,
+                        strokeWth: 30,
+                        radiusWth: 14,
+                        letterSpacing: 10,
+                        textDistancefromCenter: 6),
                   ),
                 if (provider.badgeStatus == "openToWork")
-                  // Positioned(
-                  //   bottom: MediaQuery.of(context).size.width * 0.026,
-                  //   left: MediaQuery.of(context).size.width * 0.248,
-                  //   child: Container(
-                  //     width: 180,
-                  //     height: 76,
-                  //     decoration: BoxDecoration(
-                  //       gradient: LinearGradient(
-                  //         colors: [
-                  //           const Color.fromARGB(145, 176, 216, 174)
-                  //               .withOpacity(0.1),
-                  //           const Color.fromARGB(255, 97, 210, 101)
-                  //               .withOpacity(0.8),
-                  //           const Color.fromARGB(104, 255, 255, 255)
-                  //               .withOpacity(0.2),
-                  //         ],
-                  //         begin: Alignment.bottomCenter,
-                  //         end: Alignment.topCenter,
-                  //       ),
-                  //       borderRadius: const BorderRadius.vertical(
-                  //         bottom: Radius.circular(80),
-                  //       ),
-                  //     ),
-                  //     child:
-                  //         //  Center(
-                  //         //     child: Image.network(
-                  //         //         'https://qaiadmin.neelsystems.com/InstituteImages/237/Public/greenCircle.png')
-                  //         Text(
-                  //       '#OpenToWork',
-                  //       style: TextStyle(
-                  //         color: Colors.white,
-                  //         fontWeight: FontWeight.bold,
-                  //         fontSize: 16,
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
-                  // ),
-
-                  // Stack(
-                  //   alignment: Alignment.center,
-                  //   children: [
-                  // Circular Profile Picture
-                  // const CircleAvatar(
-                  //   radius: 100,
-                  //   backgroundImage: NetworkImage(
-                  //       'https://example.com/profile.jpg'), // Replace with your image
-                  // ),
-
-                  // Red Arc with Curved Text
                   CustomPaint(
-                    size: Size(200, 200),
-                    painter: ArcPainter(),
+                    size: const Size(200, 200),
+                    painter: ArcPainter(
+                        shade: 0x00FF1A,
+                        status: "#OPEN TO WORK",
+                        fontSize: 16,
+                        fontColour: 0xFFFFF,
+                        strokeWth: 30,
+                        radiusWth: 14,
+                        letterSpacing: 10,
+                        textDistancefromCenter: 6),
                   ),
-                //   ],
-                // ),
               ]),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  // provider.toggleBadgeStatus();
                   String nextStatus;
                   switch (provider.badgeStatus) {
                     case "hidden":

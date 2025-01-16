@@ -1,5 +1,6 @@
 import 'package:dumyapp1/api_endpoints/api_endpoints.dart';
 import 'package:dumyapp1/provider/user_profile_provider.dart';
+import 'package:dumyapp1/utill/arcPainter.dart';
 import 'package:dumyapp1/utill/utill_values.dart';
 import 'package:dumyapp1/view/Addressbook/address_list_page.dart';
 import 'package:dumyapp1/view/MovieList/movies.dart';
@@ -23,7 +24,7 @@ Drawer drawer(double screenWidth, BuildContext context) {
       children: <Widget>[
         DrawerHeader(
           child: Row(children: [
-            Stack(children: [
+            Stack(alignment: Alignment.center, children: [
               SizedBox(
                 height: 80,
                 width: 80,
@@ -36,75 +37,100 @@ Drawer drawer(double screenWidth, BuildContext context) {
                 ),
               ),
               if (userProfileProvider.badgeStatus == "hiring")
-                Positioned(
-                  bottom: MediaQuery.of(context).size.width * 0,
-                  left: MediaQuery.of(context).size.width * 0,
-                  child: Container(
-                    width: 80,
-                    height: 46,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          const Color.fromARGB(69, 82, 108, 132)
-                              .withOpacity(0.1),
-                          const Color.fromARGB(255, 20, 52, 117).withOpacity(1),
-                          const Color.fromARGB(255, 112, 129, 166)
-                              .withOpacity(0.2),
-                        ],
-                        begin: Alignment.bottomCenter,
-                        end: Alignment.topCenter,
-                      ),
-                      borderRadius: const BorderRadius.vertical(
-                        bottom: Radius.circular(80),
-                      ),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        '#HIRING',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 10,
-                        ),
-                      ),
-                    ),
-                  ),
+                CustomPaint(
+                  size: const Size(80, 80),
+                  painter: ArcPainter(
+                      shade: 0x000DFF,
+                      status: "#HIRING",
+                      fontSize: 12,
+                      fontColour: 0xFFFFF,
+                      strokeWth: 20,
+                      radiusWth: 10,
+                      letterSpacing: 4,
+                      textDistancefromCenter: 1),
                 ),
+              // Positioned(
+              //   bottom: MediaQuery.of(context).size.width * 0,
+              //   left: MediaQuery.of(context).size.width * 0,
+              //   child: Container(
+              //     width: 80,
+              //     height: 46,
+              //     decoration: BoxDecoration(
+              //       gradient: LinearGradient(
+              //         colors: [
+              //           const Color.fromARGB(69, 82, 108, 132)
+              //               .withOpacity(0.1),
+              //           const Color.fromARGB(255, 20, 52, 117).withOpacity(1),
+              //           const Color.fromARGB(255, 112, 129, 166)
+              //               .withOpacity(0.2),
+              //         ],
+              //         begin: Alignment.bottomCenter,
+              //         end: Alignment.topCenter,
+              //       ),
+              //       borderRadius: const BorderRadius.vertical(
+              //         bottom: Radius.circular(80),
+              //       ),
+              //     ),
+              //     child: const Center(
+              //       child: Text(
+              //         '#HIRING',
+              //         style: TextStyle(
+              //           color: Colors.white,
+              //           fontWeight: FontWeight.bold,
+              //           fontSize: 10,
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
               if (userProfileProvider.badgeStatus == "openToWork")
-                Positioned(
-                  bottom: MediaQuery.of(context).size.width * 0,
-                  left: MediaQuery.of(context).size.width * 0,
-                  child: Container(
-                    width: 80,
-                    height: 46,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          Color.fromARGB(145, 176, 216, 174).withOpacity(0.1),
-                          const Color.fromARGB(255, 97, 210, 101)
-                              .withOpacity(0.8),
-                          const Color.fromARGB(104, 255, 255, 255)
-                              .withOpacity(0.2),
-                        ],
-                        begin: Alignment.bottomCenter,
-                        end: Alignment.topCenter,
-                      ),
-                      borderRadius: const BorderRadius.vertical(
-                        bottom: Radius.circular(80),
-                      ),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        '#OpenToWork',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 10,
-                        ),
-                      ),
-                    ),
-                  ),
+                CustomPaint(
+                  size: const Size(80, 80),
+                  painter: ArcPainter(
+                      shade: 0x00FF1A,
+                      status: "#OPEN TO WORK",
+                      fontSize: 12,
+                      fontColour: 0xFFFFF,
+                      strokeWth: 20,
+                      radiusWth: 10,
+                      letterSpacing: 2,
+                      textDistancefromCenter: 0),
                 ),
+
+              // Positioned(
+              //   bottom: MediaQuery.of(context).size.width * 0,
+              //   left: MediaQuery.of(context).size.width * 0,
+              //   child: Container(
+              //     width: 80,
+              //     height: 46,
+              //     decoration: BoxDecoration(
+              //       gradient: LinearGradient(
+              //         colors: [
+              //           Color.fromARGB(145, 176, 216, 174).withOpacity(0.1),
+              //           const Color.fromARGB(255, 97, 210, 101)
+              //               .withOpacity(0.8),
+              //           const Color.fromARGB(104, 255, 255, 255)
+              //               .withOpacity(0.2),
+              //         ],
+              //         begin: Alignment.bottomCenter,
+              //         end: Alignment.topCenter,
+              //       ),
+              //       borderRadius: const BorderRadius.vertical(
+              //         bottom: Radius.circular(80),
+              //       ),
+              //     ),
+              //     child: const Center(
+              //       child: Text(
+              //         '#OpenToWork',
+              //         style: TextStyle(
+              //           color: Colors.white,
+              //           fontWeight: FontWeight.bold,
+              //           fontSize: 10,
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ]),
             const SizedBox(width: 7),
             const Column(
