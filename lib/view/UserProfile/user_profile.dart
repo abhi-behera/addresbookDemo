@@ -12,6 +12,8 @@ class USerProfile extends StatefulWidget {
   State<USerProfile> createState() => _USerProfileState();
 }
 
+// enum BadgeStatus { hidden, hiring, openToWork }
+
 class _USerProfileState extends State<USerProfile> {
   @override
   Widget build(BuildContext context) {
@@ -59,9 +61,172 @@ class _USerProfileState extends State<USerProfile> {
     );
   }
 
+  // BadgeStatus _badgeStatus = BadgeStatus.hidden;
+
+  // void _toggleBadgeStatus() {
+  //   setState(() {
+  //     switch (_badgeStatus) {
+  //       case BadgeStatus.hidden:
+  //         _badgeStatus = BadgeStatus.hiring;
+  //         break;
+  //       case BadgeStatus.hiring:
+  //         _badgeStatus = BadgeStatus.openToWork;
+  //         break;
+  //       case BadgeStatus.openToWork:
+  //         _badgeStatus = BadgeStatus.hidden;
+  //         break;
+  //     }
+  //   });
+  // }
+
   Widget buildField(DynamicFieldList? field, UserProfileProvider provider) {
     if (field == null) return const SizedBox();
+
     switch (field.fieldType) {
+      case UserProfileFormUtill.userProfilePicture:
+        {
+          return Column(
+            children: [
+              Stack(children: [
+                Center(
+                  child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                        height: 200,
+                        width: 200,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(100),
+                          child: Image.network(
+                            'https://qaiadmin.neelsystems.com/InstituteImages/237/Public/abhijitbehera.png',
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      )),
+                ),
+                if (provider.badgeStatus == "hiring")
+                  Positioned(
+                    bottom: MediaQuery.of(context).size.width * 0.026,
+                    left: MediaQuery.of(context).size.width * 0.248,
+                    child: Container(
+                      width: 180,
+                      height: 76,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            const Color.fromARGB(69, 82, 108, 132)
+                                .withOpacity(0.1),
+                            const Color.fromARGB(255, 20, 52, 117)
+                                .withOpacity(1),
+                            const Color.fromARGB(255, 112, 129, 166)
+                                .withOpacity(0.2),
+                          ],
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter,
+                        ),
+                        borderRadius: const BorderRadius.vertical(
+                          bottom: Radius.circular(80),
+                        ),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          '#HIRING',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                if (provider.badgeStatus == "openToWork")
+                  Positioned(
+                    bottom: MediaQuery.of(context).size.width * 0.026,
+                    left: MediaQuery.of(context).size.width * 0.248,
+                    child: Container(
+                      width: 180,
+                      height: 76,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Color.fromARGB(145, 176, 216, 174).withOpacity(0.1),
+                            const Color.fromARGB(255, 97, 210, 101)
+                                .withOpacity(0.8),
+                            const Color.fromARGB(104, 255, 255, 255)
+                                .withOpacity(0.2),
+                          ],
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter,
+                        ),
+                        borderRadius: const BorderRadius.vertical(
+                          bottom: Radius.circular(80),
+                        ),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          '#OpenToWork',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                // const SizedBox(height: 20),
+                // ElevatedButton(
+                //   onPressed: _toggleBadgeStatus,
+                //   child: Text(
+                //     _badgeStatus == BadgeStatus.hidden
+                //         ? 'Show #HIRING'
+                //         : _badgeStatus == BadgeStatus.hiring
+                //             ? 'Show #OpenToWork'
+                //             : 'Hide Status',
+                //   ),
+                // ),
+              ]),
+              const SizedBox(height: 20),
+              // ElevatedButton(
+              //   onPressed: _toggleBadgeStatus,
+              //   child: Text(
+              //     _badgeStatus == BadgeStatus.hidden
+              //         ? 'Show #HIRING'
+              //         : _badgeStatus == BadgeStatus.hiring
+              //             ? 'Show #OpenToWork'
+              //             : 'Hide Status',
+              //   ),
+              // ),
+              ElevatedButton(
+                onPressed: () {
+                  // provider.toggleBadgeStatus();
+                  String nextStatus;
+                  switch (provider.badgeStatus) {
+                    case "hidden":
+                      nextStatus = "hiring";
+                      break;
+                    case "hiring":
+                      nextStatus = "openToWork";
+                      break;
+                    case "openToWork":
+                      nextStatus = "hidden";
+                      break;
+                    default:
+                      nextStatus = "hidden";
+                  }
+                  provider.toggleBadgeStatus(nextStatus);
+                },
+                child: Text(
+                  provider.badgeStatus == "hidden"
+                      ? 'Show #HIRING'
+                      : provider.badgeStatus == "hiring"
+                          ? 'Show #OpenToWork'
+                          : 'Hide Status',
+                ),
+              ),
+            ],
+          );
+        }
       case UserProfileFormUtill.userProfileFormTextBox:
         {
           return Padding(

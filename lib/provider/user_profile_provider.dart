@@ -16,9 +16,30 @@ class UserProfileProvider extends ChangeNotifier {
   String? selectedOption;
   final Map<String, String> dropdownValues = {};
 
+  List<String> status = ["hidden", "hiring", "openToWork"];
+
+  String _badgeStatus = "hidden";
+
+  String? get badgeStatus => _badgeStatus;
+
   UserProfileProvider() {
     // callIsolates();
     loadFormData();
+  }
+
+  void toggleBadgeStatus(String status) {
+    switch (status) {
+      case "hidden":
+        _badgeStatus = "hidden";
+        break;
+      case "hiring":
+        _badgeStatus = "hiring";
+        break;
+      case "openToWork":
+        _badgeStatus = "openToWork";
+        break;
+    }
+    notifyListeners();
   }
 
   Future<void> saveUserData(UserProfile userProfile) async {

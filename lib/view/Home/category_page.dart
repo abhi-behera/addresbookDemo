@@ -62,26 +62,22 @@ class _CategoryPageState extends State<CategoryPage> {
 
   final List<Map<String, String>> categories = [
     {
-      "image":
-          "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=3332&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "image": Api.imageListApi + Images.studymaterial,
       "title": "Study Material",
       "subtitle": "From ₹679"
     },
     {
-      "image":
-          "https://images.unsplash.com/photo-1518826778770-a729fb53327c?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "image": Api.imageListApi + Images.pencil,
       "title": "Pencil",
       "subtitle": "50-80% Off"
     },
     {
-      "image":
-          "https://plus.unsplash.com/premium_photo-1714397546754-3c1ef1be26e9?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "image": Api.imageListApi + Images.graduation,
       "title": "Graduation",
       "subtitle": "Just ₹1,29,999"
     },
     {
-      "image":
-          "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=3328&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "image": Api.imageListApi + Images.library,
       "title": "Library",
       "subtitle": "Free"
     },
@@ -89,40 +85,44 @@ class _CategoryPageState extends State<CategoryPage> {
 
   final List<Map<String, String>> categories1 = [
     {
-      "image":
-          "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=3332&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "image": Api.imageListApi + Images.studymaterial,
       "title": "Study Material",
       "subtitle": "From ₹679"
     },
     {
-      "image":
-          "https://images.unsplash.com/photo-1518826778770-a729fb53327c?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "image": Api.imageListApi + Images.pencil,
       "title": "Pencil",
       "subtitle": "50-80% Off"
     },
     {
-      "image":
-          "https://plus.unsplash.com/premium_photo-1714397546754-3c1ef1be26e9?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "image": Api.imageListApi + Images.graduation,
       "title": "Graduation",
       "subtitle": "Just ₹1,29,999"
     },
     {
-      "image":
-          "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=3328&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "image": Api.imageListApi + Images.library,
       "title": "Library",
       "subtitle": "Free"
     },
     {
-      "image":
-          "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=3332&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "image": Api.imageListApi + Images.studymaterial,
       "title": "Study Material",
       "subtitle": "From ₹679"
     },
     {
-      "image":
-          "https://images.unsplash.com/photo-1518826778770-a729fb53327c?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "image": Api.imageListApi + Images.pencil,
       "title": "Pencil",
       "subtitle": "50-80% Off"
+    },
+    {
+      "image": Api.imageListApi + Images.graduation,
+      "title": "Graduation",
+      "subtitle": "Just ₹1,29,999"
+    },
+    {
+      "image": Api.imageListApi + Images.library,
+      "title": "Library",
+      "subtitle": "Free"
     },
   ];
 
@@ -419,7 +419,7 @@ class _CategoryPageState extends State<CategoryPage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(
-                height: MediaQuery.of(context).size.height * 0.4,
+                height: MediaQuery.of(context).size.height * 0.42,
                 child: GridView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -452,7 +452,7 @@ class _CategoryPageState extends State<CategoryPage> {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: SizedBox(
-                height: MediaQuery.of(context).size.height * 0.33,
+                height: MediaQuery.of(context).size.height * 0.68,
                 child: GridView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -461,7 +461,7 @@ class _CategoryPageState extends State<CategoryPage> {
                     mainAxisSpacing: 10,
                     childAspectRatio: (1 / 1.5),
                   ),
-                  itemCount: 8,
+                  itemCount: 16,
                   itemBuilder: (context, index) {
                     return category8BuildGridTile(
                       imageList[0],

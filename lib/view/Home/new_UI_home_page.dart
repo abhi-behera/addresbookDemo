@@ -213,7 +213,7 @@ class _HomePage2State extends State<HomePage2> {
           return builMeetingCard(images, index, text, count);
         },
         options: CarouselOptions(
-          height: 290,
+          height: 225,
           enableInfiniteScroll: false,
         ));
   }
@@ -231,9 +231,8 @@ class _HomePage2State extends State<HomePage2> {
                     'https://static-cse.canva.com/blob/1145749/educationisimportant.9078455a.avif')),
           ),
         ),
-        Positioned(
-            bottom: 64,
-            left: 215,
+        Align(
+            alignment: Alignment.bottomRight,
             child: Container(
                 padding: const EdgeInsets.only(left: 8, bottom: 5),
                 decoration: const BoxDecoration(

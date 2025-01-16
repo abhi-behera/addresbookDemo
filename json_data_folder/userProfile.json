@@ -39,6 +39,36 @@
   "UserProfileFilled": true,
   "DynamicFieldList": [
     {
+      "FieldCode": "ProfilePicture",
+      "IsMandate": true,
+      "IsReadonly": false,
+      "RegularExpression": "",
+      "FieldTitle": "Profile Picture",
+      "FieldHelpText": "",
+      "FieldInfo": "",
+      "IsVisible": true,
+      "ValidationMessage": "Required",
+      "RegularExpression4Web": "",
+      "FormCode": "UserProfile",
+      "ComponentID": "0",
+      "FieldType": "FileUpload"
+    },
+    {
+      "FieldCode": "FirstName",
+      "IsMandate": true,
+      "IsReadonly": false,
+      "RegularExpression": "^(.){0,150}$",
+      "FieldTitle": "First Name",
+      "FieldHelpText": "",
+      "FieldInfo": "",
+      "IsVisible": true,
+      "ValidationMessage": "Enter first name",
+      "RegularExpression4Web": "/^(.){0,150}$/gi",
+      "FormCode": "UserProfile",
+      "ComponentID": "0",
+      "FieldType": "TextBox"
+    },
+    {
       "FieldCode": "MiddleName",
       "IsMandate": false,
       "IsReadonly": false,
@@ -48,6 +78,21 @@
       "FieldInfo": "",
       "IsVisible": true,
       "ValidationMessage": "Enter middle name",
+      "RegularExpression4Web": "/^(.){0,150}$/gi",
+      "FormCode": "UserProfile",
+      "ComponentID": "0",
+      "FieldType": "TextBox"
+    },
+    {
+      "FieldCode": "LastName",
+      "IsMandate": true,
+      "IsReadonly": false,
+      "RegularExpression": "^(.){0,150}$",
+      "FieldTitle": "Last Name",
+      "FieldHelpText": "",
+      "FieldInfo": "",
+      "IsVisible": true,
+      "ValidationMessage": "Enter last name",
       "RegularExpression4Web": "/^(.){0,150}$/gi",
       "FormCode": "UserProfile",
       "ComponentID": "0",
@@ -99,19 +144,19 @@
       "FieldType": "Email"
     },
     {
-      "FieldCode": "LastName",
-      "IsMandate": true,
+      "FieldCode": "SecondaryEmail",
+      "IsMandate": false,
       "IsReadonly": false,
-      "RegularExpression": "^(.){0,150}$",
-      "FieldTitle": "Last Name",
+      "RegularExpression": "^((?=.{0,150}$)(([^<>()[\\]\\\\.,;:\\s@\"]+(\\.[^<>()[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,})))$",
+      "FieldTitle": "Secondary Email",
       "FieldHelpText": "",
       "FieldInfo": "",
       "IsVisible": true,
-      "ValidationMessage": "Enter last name",
-      "RegularExpression4Web": "/^(.){0,150}$/gi",
+      "ValidationMessage": "Enter valid field value",
+      "RegularExpression4Web": "/^((?=.{0,150}$)(([^<>()[\\]\\\\.,;:\\s@\"]+(\\.[^<>()[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,})))$/",
       "FormCode": "UserProfile",
       "ComponentID": "0",
-      "FieldType": "TextBox"
+      "FieldType": "Email"
     },
     {
       "FieldCode": "DOB",
@@ -144,21 +189,6 @@
       "FieldType": "RadioButton"
     },
     {
-      "FieldCode": "ProfilePicture",
-      "IsMandate": true,
-      "IsReadonly": false,
-      "RegularExpression": "",
-      "FieldTitle": "Profile Picture",
-      "FieldHelpText": "",
-      "FieldInfo": "",
-      "IsVisible": true,
-      "ValidationMessage": "Required",
-      "RegularExpression4Web": "",
-      "FormCode": "UserProfile",
-      "ComponentID": "0",
-      "FieldType": "FileUpload"
-    },
-    {
       "FieldCode": "CitizenShip",
       "IsMandate": false,
       "IsReadonly": true,
@@ -187,36 +217,6 @@
       "FormCode": "UserProfile",
       "ComponentID": "0",
       "FieldType": "DigiSign"
-    },
-    {
-      "FieldCode": "FirstName",
-      "IsMandate": true,
-      "IsReadonly": false,
-      "RegularExpression": "^(.){0,150}$",
-      "FieldTitle": "First Name",
-      "FieldHelpText": "",
-      "FieldInfo": "",
-      "IsVisible": true,
-      "ValidationMessage": "Enter first name",
-      "RegularExpression4Web": "/^(.){0,150}$/gi",
-      "FormCode": "UserProfile",
-      "ComponentID": "0",
-      "FieldType": "TextBox"
-    },
-    {
-      "FieldCode": "SecondaryEmail",
-      "IsMandate": false,
-      "IsReadonly": false,
-      "RegularExpression": "^((?=.{0,150}$)(([^<>()[\\]\\\\.,;:\\s@\"]+(\\.[^<>()[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,})))$",
-      "FieldTitle": "Secondary Email",
-      "FieldHelpText": "",
-      "FieldInfo": "",
-      "IsVisible": true,
-      "ValidationMessage": "Enter valid field value",
-      "RegularExpression4Web": "/^((?=.{0,150}$)(([^<>()[\\]\\\\.,;:\\s@\"]+(\\.[^<>()[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,})))$/",
-      "FormCode": "UserProfile",
-      "ComponentID": "0",
-      "FieldType": "Email"
     }
   ],
   "GenderList": [

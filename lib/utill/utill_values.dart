@@ -14,6 +14,7 @@ class SingleFormUtill {
 }
 
 class UserProfileFormUtill {
+  static const String userProfilePicture = "FileUpload";
   static const String userProfileFormTextBox = "TextBox";
   static const String userProfileFormDropDown = "DropDown";
   static const String userProfileFormCalender = "Calendar";
@@ -34,10 +35,10 @@ class Images {
   static const String presentation = "presentation.jpeg";
   static const String books = "gettyimages.png";
   static const String friends = "high-five.png";
-  // static const String studyMaterial = "Single_Entry";
-  // static const String pencil = "Single_Entry";
-  // static const String graduation = "Single_Entry";
-  // static const String library = "Single_Entry";
+  static const String library = "library.jpg";
+  static const String graduation = "graduation.jpeg";
+  static const String studymaterial = "study-material.png";
+  static const String pencil = "pencil.jpeg";
   // static const String flutterCourse = "Single_Entry";
   // static const String webDevCourse = "Single_Entry";
   // static const String specsCourse = "Single_Entry";
