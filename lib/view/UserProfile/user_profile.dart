@@ -1,5 +1,6 @@
 import 'package:dumyapp1/model/dynamicfield_model/dynamicfield_model.dart';
 import 'package:dumyapp1/provider/user_profile_provider.dart';
+import 'package:dumyapp1/utill/arcPainter.dart';
 import 'package:dumyapp1/utill/utill_values.dart';
 import 'package:dumyapp1/view/CustomWidgets/custom_widgets.dart';
 import 'package:flutter/material.dart';
@@ -87,7 +88,7 @@ class _USerProfileState extends State<USerProfile> {
         {
           return Column(
             children: [
-              Stack(children: [
+              Stack(alignment: Alignment.center, children: [
                 Center(
                   child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -140,63 +141,64 @@ class _USerProfileState extends State<USerProfile> {
                     ),
                   ),
                 if (provider.badgeStatus == "openToWork")
-                  Positioned(
-                    bottom: MediaQuery.of(context).size.width * 0.026,
-                    left: MediaQuery.of(context).size.width * 0.248,
-                    child: Container(
-                      width: 180,
-                      height: 76,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Color.fromARGB(145, 176, 216, 174).withOpacity(0.1),
-                            const Color.fromARGB(255, 97, 210, 101)
-                                .withOpacity(0.8),
-                            const Color.fromARGB(104, 255, 255, 255)
-                                .withOpacity(0.2),
-                          ],
-                          begin: Alignment.bottomCenter,
-                          end: Alignment.topCenter,
-                        ),
-                        borderRadius: const BorderRadius.vertical(
-                          bottom: Radius.circular(80),
-                        ),
-                      ),
-                      child: const Center(
-                        child: Text(
-                          '#OpenToWork',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ),
-                    ),
+                  // Positioned(
+                  //   bottom: MediaQuery.of(context).size.width * 0.026,
+                  //   left: MediaQuery.of(context).size.width * 0.248,
+                  //   child: Container(
+                  //     width: 180,
+                  //     height: 76,
+                  //     decoration: BoxDecoration(
+                  //       gradient: LinearGradient(
+                  //         colors: [
+                  //           const Color.fromARGB(145, 176, 216, 174)
+                  //               .withOpacity(0.1),
+                  //           const Color.fromARGB(255, 97, 210, 101)
+                  //               .withOpacity(0.8),
+                  //           const Color.fromARGB(104, 255, 255, 255)
+                  //               .withOpacity(0.2),
+                  //         ],
+                  //         begin: Alignment.bottomCenter,
+                  //         end: Alignment.topCenter,
+                  //       ),
+                  //       borderRadius: const BorderRadius.vertical(
+                  //         bottom: Radius.circular(80),
+                  //       ),
+                  //     ),
+                  //     child:
+                  //         //  Center(
+                  //         //     child: Image.network(
+                  //         //         'https://qaiadmin.neelsystems.com/InstituteImages/237/Public/greenCircle.png')
+                  //         Text(
+                  //       '#OpenToWork',
+                  //       style: TextStyle(
+                  //         color: Colors.white,
+                  //         fontWeight: FontWeight.bold,
+                  //         fontSize: 16,
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+                  // ),
+
+                  // Stack(
+                  //   alignment: Alignment.center,
+                  //   children: [
+                  // Circular Profile Picture
+                  // const CircleAvatar(
+                  //   radius: 100,
+                  //   backgroundImage: NetworkImage(
+                  //       'https://example.com/profile.jpg'), // Replace with your image
+                  // ),
+
+                  // Red Arc with Curved Text
+                  CustomPaint(
+                    size: Size(200, 200),
+                    painter: ArcPainter(),
                   ),
-                // const SizedBox(height: 20),
-                // ElevatedButton(
-                //   onPressed: _toggleBadgeStatus,
-                //   child: Text(
-                //     _badgeStatus == BadgeStatus.hidden
-                //         ? 'Show #HIRING'
-                //         : _badgeStatus == BadgeStatus.hiring
-                //             ? 'Show #OpenToWork'
-                //             : 'Hide Status',
-                //   ),
+                //   ],
                 // ),
               ]),
               const SizedBox(height: 20),
-              // ElevatedButton(
-              //   onPressed: _toggleBadgeStatus,
-              //   child: Text(
-              //     _badgeStatus == BadgeStatus.hidden
-              //         ? 'Show #HIRING'
-              //         : _badgeStatus == BadgeStatus.hiring
-              //             ? 'Show #OpenToWork'
-              //             : 'Hide Status',
-              //   ),
-              // ),
               ElevatedButton(
                 onPressed: () {
                   // provider.toggleBadgeStatus();
